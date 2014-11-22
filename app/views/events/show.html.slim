@@ -17,9 +17,7 @@ h2 #{@event.title}
     | Time slot
   .panel-body
     span.time-slot
-      = @event.start_time.strftime('%Y/%m/%d %H:%M')
-      span<> -
-      = @event.end_time.strftime('%Y/%m/%d %H:%M')
+      = show_timeslot(@event.start_time, @event.end_time)
 
 .panel.panel-default
   .panel-heading
