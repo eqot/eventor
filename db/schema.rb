@@ -19,12 +19,12 @@ ActiveRecord::Schema.define(version: 20141122145543) do
     t.datetime "start_time",                null: false
     t.datetime "end_time",                  null: false
     t.string   "place",       limit: 255,   null: false
-    t.integer  "user_id",     limit: 4
+    t.integer  "owner_id",    limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
 
-  add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
+  add_index "events", ["owner_id"], name: "index_events_on_owner_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  limit: 255, default: "", null: false
