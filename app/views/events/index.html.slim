@@ -1,15 +1,4 @@
-ul.nav.nav-tabs
-  li.active
-    a href="#calendar" data-toggle="tab"
-      | Calendar
-  li
-    a href="#list" data-toggle="tab"
-      | List
+h2 All events
 
-br
-
-.tab-content
-  .tab-pane.fade.in.active#calendar
-    = render 'calendar'
-  .tab-pane.fade#list
-    = render 'list'
+.list-group
+  = render @events
