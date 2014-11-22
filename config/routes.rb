@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  resources :events do
-    resources :tickets
-  end
+  resources :events
 
   devise_for :users
   devise_scope :user do
@@ -10,11 +8,9 @@ Rails.application.routes.draw do
     get 'sign_out', to: 'devise/sessions#destroy'
   end
 
-  root 'events#index'
+  root 'static_pages#top'
 
   get 'about' => 'static_pages#about'
-
-  mount Markdown::API => '/'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
