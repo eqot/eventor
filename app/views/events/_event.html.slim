@@ -1,0 +1,19 @@
+= link_to event, class: "list-group-item list-item"
+  h4.list-group-item-heading
+    = event.title
+
+  .list-group-item-text.clearfix
+    p.ellipsis
+      = event.description
+
+    div
+      span.time-slot
+        = event.start_time.strftime('%Y/%m/%d %H:%M')
+        span<> -
+        = event.end_time.strftime('%Y/%m/%d %H:%M')
+      span.place
+        | , @
+        = event.place
+
+      .pull-right
+        = event.user.email
