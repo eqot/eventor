@@ -18,22 +18,30 @@ def make_users
     name: "Foo Bar",
     password: "foobar"
   )
+
+  3.times do
+    User.create!(
+      email: Faker::Internet.email,
+      name: Faker::Name.name,
+      password: '123456'
+    )
+  end
 end
 
 def make_events
-  user = User.first
+  User.all[0..3].each do |user|
+    10.times do
+      start_time = Faker::Time.forward(20)
+      end_time = start_time + 1.hour
 
-  100.times do
-    start_time = Faker::Time.forward(20)
-    end_time = start_time + 1.hour
-
-    Event.create!(
-      title: Faker::Lorem.sentence,
-      description: Faker::Lorem.paragraph,
-      start_time: start_time,
-      end_time: end_time,
-      place: Faker::Address.city,
-      user_id: user.id
-    )
+      Event.create!(
+        title: Faker::Lorem.sentence,
+        description: Faker::Lorem.paragraph,
+        start_time: start_time,
+        end_time: end_time,
+        place: Faker::Address.city,
+        user_id: user.id
+      )
+    end
   end
 end
