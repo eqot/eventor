@@ -4,7 +4,6 @@ namespace :db do
     clean
     make_users
     make_events
-    register_events
   end
 end
 
@@ -16,45 +15,24 @@ end
 def make_users
   User.create!(
     email: "foo@bar.com",
-    name: "Foo Bar",
-    password: "foobar"
+    password: "foobarbaz"
   )
-
-  3.times do
-    User.create!(
-      email: Faker::Internet.email,
-      name: Faker::Name.name,
-      password: '123456'
-    )
-  end
 end
 
 def make_events
-  User.all[0..3].each do |user|
-    10.times do |index|
-      if index < 3
-        start_time = Faker::Time.backward(20)
-      else
-        start_time = Faker::Time.forward(20)
-      end
-      end_time = start_time + 1.hour
+  user = User.first
 
-      Event.create!(
-        title: Faker::Lorem.sentence,
-        description: Faker::Lorem.paragraph,
-        start_time: start_time,
-        end_time: end_time,
-        place: Faker::Address.city,
-        owner_id: user.id
-      )
-    end
-  end
-end
+  100.times do
+    start_time = Faker::Time.forward(20)
+    end_time = start_time + 1.hour
 
-def register_events
-  User.all[0..3].each do |user|
-    Event.all[26..39].each do |event|
-      event.attend!(user)
-    end
+    Event.create!(
+      title: Faker::Lorem.sentence,
+      description: Faker::Lorem.paragraph,
+      start_time: start_time,
+      end_time: end_time,
+      place: Faker::Address.city,
+      user_id: user.id
+    )
   end
 end
