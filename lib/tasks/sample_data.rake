@@ -15,7 +15,8 @@ end
 def make_users
   User.create!(
     email: "foo@bar.com",
-    password: "foobarbaz"
+    name: "Foo Bar",
+    password: "foobar"
   )
 end
 
