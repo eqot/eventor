@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :events
+
   devise_for :users
   devise_scope :user do
     get 'sign_up', to: 'devise/registrations#new'
