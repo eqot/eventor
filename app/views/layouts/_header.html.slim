@@ -6,27 +6,23 @@ header.navbar.navbar-default role="navigation"
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      = link_to "Eventor", root_path, class: "navbar-brand", id: "logo"
+      = link_to "Congreg", root_path, class: "navbar-brand", id: "logo"
 
     .collapse.navbar-collapse#bs-example-navbar-collapse-1
 
       ul.nav.navbar-nav
         li
           = link_to "About", about_path
-        li
-          = link_to "Calendar", root_path
-        li
-          = link_to "List", root_path(v: 'list')
 
       ul.nav.navbar-nav.navbar-right
         li
           .dropdown
             button.btn.btn-default.dropdown-toggle#dropdownMenuAction type="button" data-toggle="dropdown"
-              | Create
+              | Action
               span.caret<
             ul.dropdown-menu role="menu" aria-labelledby="dropdownMenuAction"
               li role="presentation"
-                = link_to "Event", new_event_path
+                = link_to "Action"
         li
           div
             - if !user_signed_in?
