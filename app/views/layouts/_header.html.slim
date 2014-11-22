@@ -6,23 +6,25 @@ header.navbar.navbar-default role="navigation"
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      = link_to "rails-base", root_path, class: "navbar-brand", id: "logo"
+      = link_to "Congreg", root_path, class: "navbar-brand", id: "logo"
 
     .collapse.navbar-collapse#bs-example-navbar-collapse-1
 
       ul.nav.navbar-nav
         li
           = link_to "About", about_path
+        li
+          = link_to "Events", events_path
 
       ul.nav.navbar-nav.navbar-right
         li
           .dropdown
             button.btn.btn-default.dropdown-toggle#dropdownMenuAction type="button" data-toggle="dropdown"
-              | Action
+              | Create
               span.caret<
             ul.dropdown-menu role="menu" aria-labelledby="dropdownMenuAction"
               li role="presentation"
-                = link_to "Action"
+                = link_to "Event", new_event_path
         li
           div
             - if !user_signed_in?
@@ -30,7 +32,7 @@ header.navbar.navbar-default role="navigation"
             - else
               .dropdown
                 button.btn.btn-default.dropdown-toggle#dropdownMenuUser type="button" data-toggle="dropdown"
-                  = current_user.email
+                  = current_user.name
                   span.caret<
                 ul.dropdown-menu role="menu" aria-labelledby="dropdownMenuUser"
                   li role="presentation"

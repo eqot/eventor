@@ -1,0 +1,30 @@
+h2 #{@event.title}
+
+.panel.panel-default
+  .panel-heading
+    | Owner
+  .panel-body
+    = @event.owner_name
+
+.panel.panel-default
+  .panel-heading
+    | Description
+  .panel-body
+    = @event.description
+
+.panel.panel-default
+  .panel-heading
+    | Time slot
+  .panel-body
+    span.time-slot
+      = show_timeslot(@event.start_time, @event.end_time)
+
+.panel.panel-default
+  .panel-heading
+    | Place
+  .panel-body
+    = @event.place
+
+- if @event.owner?(current_user)
+  => link_to 'Edit', edit_event_path(@event), class: 'btn btn-info'
+  = link_to 'Delete', event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'}
