@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20141122145543) do
 
   create_table "events", force: true do |t|
     t.string   "title",       limit: 255,   null: false
-    t.text     "description", limit: 65535, null: false
+    t.text     "description", limit: 65535
     t.datetime "start_time",                null: false
     t.datetime "end_time",                  null: false
     t.string   "place",       limit: 255,   null: false
