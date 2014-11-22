@@ -40,7 +40,7 @@ def make_events
         start_time: start_time,
         end_time: end_time,
         place: Faker::Address.city,
-        user_id: user.id
+        owner_id: user.id
       )
     end
   end

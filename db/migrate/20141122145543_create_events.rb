@@ -6,11 +6,11 @@ class CreateEvents < ActiveRecord::Migration
       t.datetime :start_time, null: false
       t.datetime :end_time,   null: false
       t.string :place,        null: false
-      t.integer :user_id
+      t.integer :owner_id
 
       t.timestamps null: false
     end
 
-    add_index :events, :user_id
+    add_index :events, :owner_id
   end
 end
