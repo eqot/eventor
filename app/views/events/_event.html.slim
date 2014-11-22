@@ -11,9 +11,10 @@
         = event.start_time.strftime('%Y/%m/%d %H:%M')
         span<> -
         = event.end_time.strftime('%Y/%m/%d %H:%M')
+
       span.place
         | , @
         = event.place
 
       .pull-right
-        = event.user.email
+        = event.user.name
