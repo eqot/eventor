@@ -20,11 +20,11 @@ header.navbar.navbar-default role="navigation"
         li
           .dropdown
             button.btn.btn-default.dropdown-toggle#dropdownMenuAction type="button" data-toggle="dropdown"
-              | Action
+              | Create
               span.caret<
             ul.dropdown-menu role="menu" aria-labelledby="dropdownMenuAction"
               li role="presentation"
-                = link_to "Action"
+                = link_to "Event", new_event_path
         li
           div
             - if !user_signed_in?
