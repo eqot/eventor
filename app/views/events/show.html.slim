@@ -1,0 +1,28 @@
+h2 #{@event.title}
+
+.panel.panel-default
+  .panel-heading
+    | Owner
+  .panel-body
+    = @event.user_name
+
+.panel.panel-default
+  .panel-heading
+    | Description
+  .panel-body
+    = @event.description
+
+.panel.panel-default
+  .panel-heading
+    | Time slot
+  .panel-body
+    span.time-slot
+      = @event.start_time.strftime('%Y/%m/%d %H:%M')
+      span<> -
+      = @event.end_time.strftime('%Y/%m/%d %H:%M')
+
+.panel.panel-default
+  .panel-heading
+    | Place
+  .panel-body
+    = @event.place
