@@ -4,9 +4,9 @@ describe "Static pages" do
 
   describe "Top page" do
 
-    it "should have the content 'rails-base'" do
+    it "should have the content 'Congreg'" do
       visit root_path
-      expect(page).to have_content('rails-base')
+      expect(page).to have_content('Congreg')
     end
   end
 end
