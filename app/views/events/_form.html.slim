@@ -6,41 +6,26 @@
           li #{msg}
 
   .form-group
-    = f.text_field :title, class: 'form-control', placeholder: :title
+    = f.label :title
+    = f.text_field :title, class: 'form-control'
 
   .form-group
-    .panel.panel-default
-      .panel-body
-        ul.nav.nav-tabs role="tablist"
-          li.active
-            a href="#write" role="tab" data-toggle="tab"
-              | Write
-          li
-            a href="#preview" role="tab" data-toggle="tab"
-              | Preview
-        .tab-content
-          .tab-pane.fade.in.active#write
-            = f.text_area :description, class: 'form-control', rows: 10, placeholder: :description
-          .tab-pane.fade#preview
-            #markdown
+    = f.label :description
+    = f.text_area :description, class: 'form-control', rows: 10
 
   .form-group
-    input.form-item.datepicker type='text' id='date' placeholder='Date'
-    span<>
-      | from
-    input.form-item.timepicker type='text' id='start_time' placeholder='Start time'
-    span<>
-      | to
-    input.form-item.timepicker type='text' id='end_time' placeholder='End time'
-
-  .form-group.sr-only
-    = f.datetime_select :start_time
-
-  .form-group.sr-only
-    = f.datetime_select :end_time
+    = f.label :start_time
+    div
+      = f.datetime_select :start_time
 
   .form-group
-    = f.text_field :place, class: 'form-control', placeholder: :place
+    = f.label :end_time
+    div
+      = f.datetime_select :end_time
 
-  = f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }
+  .form-group
+    = f.label :place
+    = f.text_field :place, class: 'form-control'
+
+  => f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }
   = link_to 'Cancel', event, class: "btn btn-default"
