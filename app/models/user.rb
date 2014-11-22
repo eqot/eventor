@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
-  has_many :events
+  has_many :created_events, class_name: 'Event', foreign_key: :owner_id
 end
