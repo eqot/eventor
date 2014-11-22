@@ -8,6 +8,8 @@ class Event < ActiveRecord::Base
   validates :place, presence: true
   validate :start_time_should_be_before_end_time
 
+  delegate :name, to: :user, prefix: true
+
   private
 
   def start_time_should_be_before_end_time
