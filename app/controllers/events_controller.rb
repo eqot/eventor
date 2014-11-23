@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
   def index
-    @events = Event.where('start_time > ?', Time.now).order(:start_time)
+    @events = Event.where('start_time > ?', Time.now).order(:start_time).page(params[:page])
   end
 
   def show
