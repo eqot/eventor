@@ -23,6 +23,10 @@ module RailsBase42
     # Add utility modules
     config.autoload_paths += Dir[Rails.root.join('lib', 'autoload')]
 
+    # Add paths for web APIs
+    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
