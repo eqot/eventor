@@ -30,8 +30,12 @@ end
 
 def make_events
   User.all[0..3].each do |user|
-    10.times do
-      start_time = Faker::Time.forward(20)
+    10.times do |index|
+      if index < 3
+        start_time = Faker::Time.backward(20)
+      else
+        start_time = Faker::Time.forward(20)
+      end
       end_time = start_time + 1.hour
 
       Event.create!(
