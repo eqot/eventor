@@ -10,7 +10,8 @@ h2 #{@event.title}
   .panel-heading
     | Description
   .panel-body
-    = @event.description
+    - if @event.description?
+      = Markdown.html @event.description
 
 .panel.panel-default
   .panel-heading
