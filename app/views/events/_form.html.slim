@@ -11,7 +11,20 @@
 
   .form-group
     = f.label :description
-    = f.text_area :description, class: 'form-control', rows: 10
+    .panel.panel-default
+      .panel-body
+        ul.nav.nav-tabs role="tablist"
+          li.active
+            a href="#write" role="tab" data-toggle="tab"
+              | Write
+          li
+            a href="#preview" role="tab" data-toggle="tab"
+              | Preview
+        .tab-content
+          .tab-pane.fade.in.active#write
+            = f.text_area :description, class: 'form-control', rows: 10
+          .tab-pane.fade#preview
+            #markdown
 
   .form-group
     = f.label :start_time

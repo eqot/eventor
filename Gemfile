@@ -89,3 +89,13 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
+
+# Use Grape for web APIs
+gem 'grape'
+
+# Use kaminari for pagination
+gem 'kaminari'
+gem 'kaminari-bootstrap'
+
+# Use downr for markdown
+gem 'downr'
