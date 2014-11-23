@@ -73,10 +73,6 @@ group :development do
   gem 'hirb-unicode'
 
   gem 'rails_best_practices'
-
-  # Use profiler
-  gem 'rack-mini-profiler'
-  gem 'bullet'
 end
 
 # Use RSpec and related gems for testing
@@ -94,22 +90,5 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-# Use Grape for web APIs
-gem 'grape'
-
-# Use bootstrap-datetimepicker
-gem 'bootstrap3-datetimepicker-rails'
-
-# Use kaminari for pagination
-gem 'kaminari'
-gem 'kaminari-bootstrap'
-
 # Use downr for markdown
 gem 'downr'
-
-# Use FullCalendar
-gem 'fullcalendar-rails'
-gem 'momentjs-rails'
-
-# Use icalendar
-gem 'icalendar'
