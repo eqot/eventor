@@ -90,5 +90,8 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+# Use Grape for web APIs
+gem 'grape'
+
 # Use downr for markdown
 gem 'downr'
