@@ -4,7 +4,8 @@
 
   .list-group-item-text.clearfix
     p.ellipsis
-      = event.description
+      - if event.description?
+        = Markdown.text event.description
 
     div
       span.time-slot
