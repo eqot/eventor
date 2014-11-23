@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.0.rc2'
 # Use MySQL2 as the database for Active Record
 gem 'mysql2'
 # Use SCSS for stylesheets
@@ -26,9 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Puma as the app server
+# Use Unicorn as the app server
 # gem 'unicorn'
-gem 'puma'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -53,13 +52,6 @@ gem 'less-rails-bootstrap'
 # Use Devise
 gem 'devise'
 
-# Use logger
-gem 'lograge'
-gem 'act-fluent-logger-rails'
-
-# Use profiler
-gem 'rack-mini-profiler', require: false
-
 group :development do
   # Use guard for live reload
   gem 'guard'
@@ -81,7 +73,6 @@ group :development do
   gem 'hirb-unicode'
 
   gem 'rails_best_practices'
-  gem 'rubocop', require: false
 end
 
 # Use RSpec and related gems for testing
@@ -99,22 +90,5 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-# Use Grape for web APIs
-gem 'grape'
-
-# Use bootstrap-datetimepicker
-gem 'bootstrap3-datetimepicker-rails'
-
-# Use kaminari for pagination
-gem 'kaminari'
-gem 'kaminari-bootstrap'
-
 # Use downr for markdown
 gem 'downr'
-
-# Use FullCalendar
-gem 'fullcalendar-rails'
-gem 'momentjs-rails'
-
-# Use icalendar
-gem 'icalendar'
