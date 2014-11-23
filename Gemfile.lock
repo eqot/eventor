@@ -46,8 +46,6 @@ GEM
     bcrypt (3.1.9)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap3-datetimepicker-rails (3.1.3)
-      momentjs-rails (>= 2.8.1)
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -115,9 +113,6 @@ GEM
       i18n (~> 0.5)
     ffi (1.9.6)
     formatador (0.2.5)
-    fullcalendar-rails (2.2.5.0)
-      jquery-rails (>= 3.1.1, < 5.0.0)
-      momentjs-rails (~> 2.8, >= 2.8.3)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     grape (0.10.1)
@@ -158,7 +153,6 @@ GEM
       nokogiri (~> 1.4)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
-    icalendar (2.2.2)
     ice_nine (0.11.1)
     jbuilder (2.2.6)
       activesupport (>= 3.0.0, < 5)
@@ -168,12 +162,6 @@ GEM
       railties (>= 4.2.0.beta)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
-    kaminari (0.16.1)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
-    kaminari-bootstrap (3.0.1)
-      kaminari (>= 0.13.0)
-      rails
     launchy (2.4.3)
       addressable (~> 2.3)
     less (2.6.0)
@@ -197,8 +185,6 @@ GEM
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.0)
-    momentjs-rails (2.8.3)
-      railties (>= 3.1)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     mysql2 (0.3.17)
@@ -377,7 +363,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap3-datetimepicker-rails
   byebug
   capybara
   coffee-rails (~> 4.1.0)
@@ -386,21 +371,16 @@ DEPENDENCIES
   downr
   factory_girl_rails
   faker
-  fullcalendar-rails
   grape
   guard
   guard-livereload
   guard-rspec
   hirb
   hirb-unicode
-  icalendar
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0.0.beta2)
-  kaminari
-  kaminari-bootstrap
   launchy
   less-rails-bootstrap
-  momentjs-rails
   mysql2
   pry-byebug
   pry-rails
