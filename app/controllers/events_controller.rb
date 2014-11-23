@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
 
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @events = Event.where('start_time > ?', Time.now).order(:start_time).page(params[:page])
   end
