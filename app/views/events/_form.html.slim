@@ -25,9 +25,18 @@
             #markdown
 
   .form-group
+    input.form-item.datepicker type='text' id='date' placeholder='Date'
+    span<>
+      | from
+    input.form-item.timepicker type='text' id='start_time' placeholder='Start time'
+    span<>
+      | to
+    input.form-item.timepicker type='text' id='end_time' placeholder='End time'
+
+  .form-group.sr-only
     = f.datetime_select :start_time
 
-  .form-group
+  .form-group.sr-only
     = f.datetime_select :end_time
 
   .form-group
