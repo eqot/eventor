@@ -10,3 +10,9 @@ $ ->
 
     $.post('/api/v1/markdown', data).done (html) ->
       $('#markdown').html html
+
+  $('.datepicker').datetimepicker
+    pickTime: false
+
+  $('.timepicker').datetimepicker
+    pickDate: false
