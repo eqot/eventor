@@ -3,6 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
+  enableMarkdownPreview()
+  enableDateTimePicker()
+
+enableMarkdownPreview = ->
   $('a[href=#preview]').on 'shown.bs.tab', ->
     data = {
       content: $('#write textarea').val()
@@ -10,9 +14,6 @@ $ ->
 
     $.post('/api/v1/markdown', data).done (html) ->
       $('#markdown').html html
-
-  enableDateTimePicker()
-
 
 enableDateTimePicker = ->
   dateElement = $('#date')
