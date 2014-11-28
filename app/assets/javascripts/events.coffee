@@ -17,6 +17,8 @@ enableMarkdownPreview = ->
 
 enableDateTimePicker = ->
   dateElement = $('#date')
+  return unless dateElement[0]?
+
   startTimeElement = $('#start_time')
   endTimeElement = $('#end_time')
 
