@@ -13,11 +13,15 @@ $ ->
 
   enableDateTimePicker()
 
+
 enableDateTimePicker = ->
+  dateElement = $('#date')
+  startTimeElement = $('#start_time')
+  endTimeElement = $('#end_time')
+
   date = new Date()
   date.setMinutes 0
   date.setHours(date.getHours() + 1)
-  date.setMinutes 0
 
   $('.datepicker').datetimepicker
     pickTime: false
@@ -26,20 +30,19 @@ enableDateTimePicker = ->
 
   $('.timepicker').datetimepicker
     pickDate: false
-    pick12HourFormat: false
-  .data('DateTimePicker').use24hours = true
+    format: 'HH:mm'
 
-  $('#start_time').data("DateTimePicker").setValue date
+  startTimeElement.data('DateTimePicker').setValue date
 
-  $('#date').on 'dp.change', onUpdated
-  $('#start_time').on 'dp.hide', onUpdated
-  $('#end_time').on 'dp.hide', onUpdated
+  dateElement.on 'dp.change', onUpdated
+  startTimeElement.on 'dp.hide', onUpdated
+  endTimeElement.on 'dp.hide', onUpdated
 
-  $('#start_time').on 'dp.hide', ->
-    if $('#end_time').val() is ''
-      date = new Date('1/1/2000 ' + $('#start_time').val())
+  startTimeElement.on 'dp.hide', ->
+    if endTimeElement.val() is ''
+      date = new Date('1/1/2000 ' + startTimeElement.val())
       date.setHours(date.getHours() + 1)
-      $('#end_time').data("DateTimePicker").setValue date
+      endTimeElement.data('DateTimePicker').setValue date
 
 onUpdated = ->
   date = $('#date').val()
