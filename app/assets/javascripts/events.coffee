@@ -11,15 +11,35 @@ $ ->
     $.post('/api/v1/markdown', data).done (html) ->
       $('#markdown').html html
 
+  enableDateTimePicker()
+
+enableDateTimePicker = ->
+  date = new Date()
+  date.setMinutes 0
+  date.setHours(date.getHours() + 1)
+  date.setMinutes 0
+
   $('.datepicker').datetimepicker
     pickTime: false
+    calendarWeeks: true
+  .data('DateTimePicker').setValue date
 
   $('.timepicker').datetimepicker
     pickDate: false
+    pick12HourFormat: false
+  .data('DateTimePicker').use24hours = true
+
+  $('#start_time').data("DateTimePicker").setValue date
 
   $('#date').on 'dp.change', onUpdated
   $('#start_time').on 'dp.hide', onUpdated
   $('#end_time').on 'dp.hide', onUpdated
+
+  $('#start_time').on 'dp.hide', ->
+    if $('#end_time').val() is ''
+      date = new Date('1/1/2000 ' + $('#start_time').val())
+      date.setHours(date.getHours() + 1)
+      $('#end_time').data("DateTimePicker").setValue date
 
 onUpdated = ->
   date = $('#date').val()
