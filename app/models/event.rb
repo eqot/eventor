@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  has_many :tickets
+  has_many :attendees, through: :tickets, source: :user
 
   belongs_to :owner, class_name: 'User'
   delegate :name, to: :owner, prefix: true
@@ -14,6 +16,10 @@ class Event < ActiveRecord::Base
     owner_id == user.id
   end
 
+  def register!(user)
+    tickets.find_or_create_by!(user_id: user.id)
+  end
+
   private
 
   def start_time_should_be_before_end_time
@@ -23,5 +29,4 @@ class Event < ActiveRecord::Base
       errors.add(:start_time, 'should be before end time')
     end
   end
-
 end
