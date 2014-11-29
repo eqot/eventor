@@ -1,0 +1,14 @@
+class CreateTickets < ActiveRecord::Migration
+  def change
+    create_table :tickets do |t|
+      t.integer :user_id
+      t.integer :event_id, null: false
+      t.string :comment
+
+      t.timestamps null: false
+    end
+
+    add_index :tickets, [:user_id, :event_id], unique: true
+    add_index :tickets, [:event_id, :user_id], unique: true
+  end
+end
