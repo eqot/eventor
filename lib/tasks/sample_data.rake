@@ -4,6 +4,7 @@ namespace :db do
     clean
     make_users
     make_events
+    register_events
   end
 end
 
@@ -46,6 +47,14 @@ def make_events
         place: Faker::Address.city,
         owner_id: user.id
       )
+    end
+  end
+end
+
+def register_events
+  User.all[0..3].each do |user|
+    Event.all[6..9].each do |event|
+      event.register!(user)
     end
   end
 end
