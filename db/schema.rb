@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141122145543) do
+ActiveRecord::Schema.define(version: 20141128155024) do
 
   create_table "events", force: true do |t|
     t.string   "title",       limit: 255,   null: false
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20141122145543) do
   end
 
   add_index "events", ["owner_id"], name: "index_events_on_owner_id", using: :btree
+
+  create_table "tickets", force: true do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "event_id",   limit: 4,   null: false
+    t.string   "comment",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "tickets", ["event_id", "user_id"], name: "index_tickets_on_event_id_and_user_id", unique: true, using: :btree
+  add_index "tickets", ["user_id", "event_id"], name: "index_tickets_on_user_id_and_event_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  limit: 255, default: "", null: false
