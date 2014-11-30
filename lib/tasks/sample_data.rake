@@ -53,8 +53,8 @@ end
 
 def register_events
   User.all[0..3].each do |user|
-    Event.all[6..9].each do |event|
-      event.register!(user)
+    Event.all[26..39].each do |event|
+      event.attend!(user)
     end
   end
 end
