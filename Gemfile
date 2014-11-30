@@ -116,3 +116,7 @@ gem 'kaminari-bootstrap'
 
 # Use downr for markdown
 gem 'downr'
+
+# Use FullCalendar
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
