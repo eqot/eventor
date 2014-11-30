@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :events
+  resources :events do
+    resources :tickets
+  end
 
   devise_for :users
   devise_scope :user do
