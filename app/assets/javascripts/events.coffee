@@ -5,6 +5,7 @@
 $(document).on "ready page:load", ->
   enableMarkdownPreview()
   enableDateTimePicker()
+  enableFullCalendar()
 
 enableMarkdownPreview = ->
   $('a[href=#preview]').on 'shown.bs.tab', ->
@@ -74,3 +75,9 @@ onUpdated = ->
       hour = '0' + hour if hour < 10
       $('#event_end_time_4i').val hour
       $('#event_end_time_5i').val end.getMinutes()
+
+enableFullCalendar = ->
+  calendar = $('#calendar')
+  return unless calendar[0]?
+
+  calendar.fullCalendar({})
