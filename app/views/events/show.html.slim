@@ -26,6 +26,17 @@ h2 #{@event.title}
   .panel-body
     = @event.place
 
+.panel.panel-default
+  .panel-heading
+    | Attendees
+  .panel-body#attendees
+    = render partial: '/users/user', collection: @event.attendees, spacer_template: 'user_separator'
+
 - if @event.owner?(current_user)
   => link_to 'Edit', edit_event_path(@event), class: 'btn btn-info'
   = link_to 'Delete', event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'}
+- else
+  - if not @event.attend?(current_user)
+    = link_to 'Attend', event_tickets_path(@event, @ticket), class: 'btn btn-info', method: :post
+  - else
+    = link_to 'Cancel', event_ticket_path(@event, @ticket), class: 'btn btn-danger', method: :delete
