@@ -1,19 +1,23 @@
 = link_to event, class: "list-group-item list-item"
-  h4.list-group-item-heading
-    = event.title
+  p.pull-left.list-left
+    = event.attendees.length
 
-  .list-group-item-text.clearfix
-    p.ellipsis
-      - if event.description?
-        = Markdown.text event.description
+  div
+    h4.list-group-item-heading
+      = event.title
 
-    div
-      span.time-slot
-        = show_timeslot(event.start_time, event.end_time)
+    .list-group-item-text.clearfix
+      p.ellipsis
+        - if event.description?
+          = Markdown.text event.description
 
-      span.place
-        | , @
-        = event.place
+      div
+        span.time-slot
+          = show_timeslot(event.start_time, event.end_time)
 
-      .pull-right
-        = event.owner_name
+        span.place
+          | , @
+          = event.place
+
+        .pull-right
+          = event.owner_name
