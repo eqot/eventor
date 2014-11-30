@@ -16,7 +16,12 @@ class Event < ActiveRecord::Base
     owner_id == user.id
   end
 
-  def register!(user)
+  def attend?(user)
+    return false unless user
+    tickets.find_by(user_id: user.id)
+  end
+
+  def attend!(user)
     tickets.find_or_create_by!(user_id: user.id)
   end
 
