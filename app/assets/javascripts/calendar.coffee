@@ -7,9 +7,15 @@ enableFullCalendar = ->
 
   getEvents (events) ->
     calendarElement.fullCalendar
+      header:
+        left: 'prev,next today'
+        center: 'title'
+        right: 'month,agendaWeek,agendaDay'
       eventSources: [
         events: events
       ]
+      weekNumbers: true
+      timeFormat: 'H:mm'
 
 getEvents = (callback) ->
   $.get('/events.json').done (eventsFromServer) ->
