@@ -1,19 +1,26 @@
 $(document).on "ready page:load", ->
-  element = $('#calendar')
-  return unless element[0]?
+  enableFullCalendar()
 
-  initFullCalendar element
-  loadEvents element
+enableFullCalendar = ->
+  calendarElement = $('#calendar')
+  return unless calendarElement[0]?
 
-initFullCalendar = (element) ->
-  element.fullCalendar
-    header:
-      left: 'prev,next today'
-      center: 'title'
-      right: 'month,agendaWeek,agendaDay'
-    weekNumbers: true
-    timeFormat: 'H:mm'
+  getEvents (events) ->
+    calendarElement.fullCalendar
+      eventSources: [
+        events: events
+      ]
 
-loadEvents = (element) ->
-  $.get('/events.json?t=all').done (events) ->
-    element.fullCalendar 'addEventSource', events
+getEvents = (callback) ->
+  $.get('/events.json').done (eventsFromServer) ->
+    events = []
+    for event in eventsFromServer
+      events.push
+        id: event.id
+        title: event.title
+        start: event.start_time
+        end: event.end_time
+        url: '/events/' + event.id
+
+    if callback?
+      callback events
