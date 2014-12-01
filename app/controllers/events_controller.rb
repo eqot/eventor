@@ -4,6 +4,11 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.where('start_time > ?', Time.now).order(:start_time).page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @events }
+    end
   end
 
   def show
