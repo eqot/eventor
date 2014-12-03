@@ -18,7 +18,7 @@ enableFullCalendar = ->
       timeFormat: 'H:mm'
 
 getEvents = (callback) ->
-  $.get('/events.json').done (eventsFromServer) ->
+  $.get('/events.json?past=true').done (eventsFromServer) ->
     events = []
     for event in eventsFromServer
       events.push
