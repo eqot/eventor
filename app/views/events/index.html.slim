@@ -1,10 +1,15 @@
-h2 All events
+ul.nav.nav-tabs
+  li.active
+    a href="#calendar" data-toggle="tab"
+      | Calendar
+  li
+    a href="#list" data-toggle="tab"
+      | List
 
-.center
-  = paginate @events
+br
 
-.list-group
-  = render @events
-
-.center
-  = paginate @events
+.tab-content
+  .tab-pane.fade.in.active#calendar
+    = render 'calendar'
+  .tab-pane.fade#list
+    = render 'list'
