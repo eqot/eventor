@@ -25,6 +25,18 @@ class Event < ActiveRecord::Base
     tickets.find_or_create_by!(user_id: user.id)
   end
 
+  def to_ics
+    event = Icalendar::Event.new
+    event.dtstart     = self.start_time.strftime("%Y%m%dT%H%M%S")
+    event.dtend       = self.end_time.strftime("%Y%m%dT%H%M%S")
+    event.summary     = self.title
+    event.description = self.description
+
+    cal = Icalendar::Calendar.new
+    cal.add_event(event)
+    cal.to_ical
+  end
+
   private
 
   def start_time_should_be_before_end_time
