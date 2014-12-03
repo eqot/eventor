@@ -120,3 +120,6 @@ gem 'downr'
 # Use FullCalendar
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+
+# Use icalendar
+gem 'icalendar'

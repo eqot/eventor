@@ -137,7 +137,7 @@ GEM
       tzinfo-data (>= 1.0.0)
       yajl-ruby (~> 1.0)
     formatador (0.2.5)
-    fullcalendar-rails (2.2.3.0)
+    fullcalendar-rails (2.2.5.0)
       jquery-rails (>= 3.1.1, < 5.0.0)
       momentjs-rails (~> 2.8, >= 2.8.3)
     globalid (0.3.0)
@@ -182,6 +182,7 @@ GEM
       nokogiri (~> 1.4)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
+    icalendar (2.2.2)
     ice_nine (0.11.1)
     jbuilder (2.2.6)
       activesupport (>= 3.0.0, < 5)
@@ -448,6 +449,7 @@ DEPENDENCIES
   guard-rspec
   hirb
   hirb-unicode
+  icalendar
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0.0.beta2)
   kaminari
