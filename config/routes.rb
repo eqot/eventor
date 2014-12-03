@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get 'sign_out', to: 'devise/sessions#destroy'
   end
 
-  root 'static_pages#top'
+  root 'events#index'
 
   get 'about' => 'static_pages#about'
 
