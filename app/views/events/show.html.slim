@@ -40,3 +40,5 @@ h2 #{@event.title}
     = link_to 'Attend', event_tickets_path(@event, @ticket), class: 'btn btn-info', method: :post
   - else
     = link_to 'Cancel', event_ticket_path(@event, @ticket), class: 'btn btn-danger', method: :delete
+
+=< link_to 'Add to calendar', event_path(@event) + '.ics', class: 'btn btn-warning'
