@@ -1,3 +1,5 @@
+require 'icalendar'
+
 class EventsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :show]
@@ -18,6 +20,11 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @ticket = current_user && current_user.tickets.find_by(event_id: params[:id])
+
+    respond_to do |format|
+      format.html
+      format.ics { render text: @event.to_ics }
+    end
   end
 
   def new
