@@ -3,7 +3,11 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @events = Event.where('start_time > ?', Time.now).order(:start_time).page(params[:page])
+    if params[:past] == 'true'
+      @events = Event.all.order(:start_time).page(params[:page])
+    else
+      @events = Event.where('start_time > ?', Time.now).order(:start_time).page(params[:page])
+    end
 
     respond_to do |format|
       format.html
