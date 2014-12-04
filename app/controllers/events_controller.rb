@@ -23,7 +23,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.ics { render text: @event.to_ics }
+      format.ics { render text: @event.to_ics(request.host_with_port) }
     end
   end
 
