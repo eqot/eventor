@@ -25,12 +25,18 @@ class Event < ActiveRecord::Base
     tickets.find_or_create_by!(user_id: user.id)
   end
 
-  def to_ics
+  def to_ics(host)
     event = Icalendar::Event.new
-    event.dtstart     = self.start_time.strftime("%Y%m%dT%H%M%S")
-    event.dtend       = self.end_time.strftime("%Y%m%dT%H%M%S")
-    event.summary     = self.title
-    event.description = self.description
+    event.dtstart       = self.start_time.strftime("%Y%m%dT%H%M%S")
+    event.dtend         = self.end_time.strftime("%Y%m%dT%H%M%S")
+    event.summary       = self.title
+    event.description   = self.description
+    event.location      = self.place
+    event.ip_class      = "PUBLIC"
+    event.created       = self.created_at
+    event.last_modified = self.updated_at
+    event.uid = event.url = Rails.application.routes.url_helpers.event_url(self, host: host)
+    event.organizer     = 'mailto:' + self.owner.email
 
     cal = Icalendar::Calendar.new
     cal.add_event(event)
