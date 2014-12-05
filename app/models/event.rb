@@ -25,6 +25,10 @@ class Event < ActiveRecord::Base
     tickets.find_or_create_by!(user_id: user.id)
   end
 
+  def include?(user)
+    self.owner == user || self.attend?(user)
+  end
+
   def to_ics(host)
     event = Icalendar::Event.new
     event.dtstart       = self.start_time.strftime("%Y%m%dT%H%M%S")
