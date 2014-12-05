@@ -13,7 +13,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @events }
+      format.json { render 'index', formats: :json, handlers: :jbuilder }
     end
   end
 
