@@ -4,5 +4,5 @@ json.array! @events do |event|
   json.start event.start_time
   json.end event.end_time
   json.url '/events/' + event.id.to_s
-  json.className event.owner == current_user || event.attend?(current_user) ? 'event-attend' : ''
+  json.className event.include?(current_user) ? 'event-attend' : ''
 end
