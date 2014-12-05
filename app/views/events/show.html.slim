@@ -41,4 +41,4 @@ h2 #{@event.title}
   - else
     = link_to 'Cancel', event_ticket_path(@event, @ticket), class: 'btn btn-danger', method: :delete
 
-=< link_to 'Add to calendar', event_path(@event, only_path: false, protocol: :webcal, format: :ics), class: 'btn btn-warning'
+=< link_to 'Add to calendar', event_path(@event, format: :ics), class: 'btn btn-warning'
