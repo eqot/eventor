@@ -107,7 +107,6 @@ end
 gem 'grape'
 
 # Use bootstrap-datetimepicker
-gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 
 # Use kaminari for pagination
