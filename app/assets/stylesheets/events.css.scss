@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$event-attend-color: #ed8c0d;
+
 .nav-tabs a {
   color: #666;
 }
@@ -47,4 +49,9 @@
 
 a.btn, input.btn {
   margin-right: 6px;
+}
+
+a.event-attend {
+  background-color: $event-attend-color;
+  border-color: $event-attend-color;
 }
