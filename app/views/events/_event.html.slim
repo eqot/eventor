@@ -1,6 +1,7 @@
 = link_to event, class: "list-group-item list-item"
   p.pull-left.list-left
-    = event.attendees.length
+    span class=(event.include?(current_user) ? 'event-attend' : '')
+      = event.attendees.length
 
   div
     h4.list-group-item-heading
