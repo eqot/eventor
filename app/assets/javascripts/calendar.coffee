@@ -15,5 +15,5 @@ initFullCalendar = (element) ->
     timeFormat: 'H:mm'
 
 loadEvents = (element) ->
-  $.get('/events.json?past=true').done (events) ->
+  $.get('/events.json?t=all').done (events) ->
     element.fullCalendar 'addEventSource', events
