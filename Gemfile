@@ -86,6 +86,9 @@ group :development do
 
   gem 'rails_best_practices'
   gem 'rubocop', require: false
+
+  # Use profiler
+  gem 'rack-mini-profiler'
 end
 
 # Use RSpec and related gems for testing
