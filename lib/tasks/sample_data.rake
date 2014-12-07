@@ -35,7 +35,7 @@ def make_events
       if index < 3
         start_time = Faker::Time.backward(20)
       else
-        start_time = Faker::Time.forward(20)
+        start_time = Faker::Time.forward(50)
       end
       end_time = start_time + 1.hour
 
