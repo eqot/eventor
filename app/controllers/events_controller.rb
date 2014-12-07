@@ -11,6 +11,8 @@ class EventsController < ApplicationController
       @events = Event.includes(:owner, :attendees).where('start_time > ?', Time.now).order(:start_time).page(params[:page])
     end
 
+    @view = params[:v] || 'calendar'
+
     respond_to do |format|
       format.html
       format.json { render 'index', formats: :json, handlers: :jbuilder }
