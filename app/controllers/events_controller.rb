@@ -6,9 +6,9 @@ class EventsController < ApplicationController
 
   def index
     if params[:past] == 'true'
-      @events = Event.all.order(:start_time).page(params[:page])
+      @events = Event.includes(:owner, :attendees).all.order(:start_time).page(params[:page])
     else
-      @events = Event.where('start_time > ?', Time.now).order(:start_time).page(params[:page])
+      @events = Event.includes(:owner, :attendees).where('start_time > ?', Time.now).order(:start_time).page(params[:page])
     end
 
     respond_to do |format|
