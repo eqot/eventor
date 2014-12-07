@@ -89,6 +89,7 @@ group :development do
 
   # Use profiler
   gem 'rack-mini-profiler'
+  gem 'bullet'
 end
 
 # Use RSpec and related gems for testing
