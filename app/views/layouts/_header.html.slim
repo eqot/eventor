@@ -16,7 +16,7 @@ header.navbar.navbar-default role="navigation"
         li
           = link_to "Calendar", root_path
         li
-          = link_to "List", root_path + '?v=list'
+          = link_to "List", root_path(v: 'list')
 
       ul.nav.navbar-nav.navbar-right
         li
