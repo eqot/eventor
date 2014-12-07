@@ -73,6 +73,10 @@ group :development do
   gem 'hirb-unicode'
 
   gem 'rails_best_practices'
+
+  # Use profiler
+  gem 'rack-mini-profiler'
+  gem 'bullet'
 end
 
 # Use RSpec and related gems for testing
