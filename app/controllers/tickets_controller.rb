@@ -1,5 +1,7 @@
 class TicketsController < ApplicationController
 
+  before_action :authenticate_user!
+
   def create
     ticket = current_user.tickets.build do |t|
       t.event_id = params[:event_id]
