@@ -1,5 +1,8 @@
 class TicketsController < ApplicationController
 
+  before_action :store_current_location
+  before_action :authenticate_user!
+
   def create
     ticket = current_user.tickets.build do |t|
       t.event_id = params[:event_id]
@@ -21,6 +24,13 @@ class TicketsController < ApplicationController
     else
       render json: { message: ticket.errors.full_message }, status: 422
     end
+  end
+
+  private
+
+  def store_current_location
+    event = Event.find(params[:event_id])
+    store_location_for(:user, event_path(event))
   end
 
 end
