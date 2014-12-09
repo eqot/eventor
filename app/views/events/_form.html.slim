@@ -42,5 +42,6 @@
   .form-group
     = f.text_field :place, class: 'form-control', placeholder: :place
 
-  = f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }
-  = link_to 'Cancel', event, class: "btn btn-default"
+  .button-group
+    = f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }
+    = link_to 'Cancel', event, class: "btn btn-default"
