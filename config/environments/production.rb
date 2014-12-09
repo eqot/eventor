@@ -76,5 +76,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Devise
-  config.action_mailer.default_url_options = { host: 'congreg', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'eventor', port: 3000 }
 end
