@@ -2,7 +2,7 @@ h2 #{@event.title}
 
 .panel.panel-default
   .panel-heading
-    | Owner
+    | Organizer
   .panel-body
     = @event.owner_name
 
@@ -32,13 +32,14 @@ h2 #{@event.title}
   .panel-body#attendees
     = render partial: '/users/user', collection: @event.attendees, spacer_template: 'user_separator'
 
-- if @event.owner?(current_user)
-  = link_to 'Edit', edit_event_path(@event), class: 'btn btn-info'
-  = link_to 'Delete', event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'}
-- else
-  - if not @event.attend?(current_user)
-    = link_to 'Attend', event_tickets_path(@event, @ticket), class: 'btn btn-info', method: :post
+.button-group
+  - if @event.owner?(current_user)
+    = link_to 'Edit', edit_event_path(@event), class: 'btn btn-info'
+    = link_to 'Delete', event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'}
   - else
-    = link_to 'Cancel', event_ticket_path(@event, @ticket), class: 'btn btn-danger', method: :delete
+    - if not @event.attend?(current_user)
+      = link_to 'Attend', event_tickets_path(@event, @ticket), class: 'btn btn-info', method: :post
+    - else
+      = link_to 'Cancel', event_ticket_path(@event, @ticket), class: 'btn btn-danger', method: :delete
 
-= link_to 'Add to calendar', event_path(@event, format: :ics), class: 'btn btn-warning'
+  = link_to 'Add to calendar', event_path(@event, format: :ics), class: 'btn btn-warning'
