@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :events do
+  concern :paginatable do
+    get '(page/:page)', :action => :index, :on => :collection, :as => ''
+  end
+
+  resources :events, :concerns => :paginatable do
     resources :tickets
   end
 
