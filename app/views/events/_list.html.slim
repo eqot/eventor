@@ -1,5 +1,5 @@
 .pull-right
-  - if @time == 'all'
+  - if time == 'all'
     = link_to "See passed events", root_path(v: 'list', t: 'passed'), class: 'btn btn-info'
   - else
     = link_to "See coming events", root_path(v: 'list'), class: 'btn btn-info'
@@ -7,10 +7,10 @@
 br
 
 .center
-  = paginate @events
+  = paginate events
 
 .list-group
-  = render @events
+  = render events
 
 .center
-  = paginate @events
+  = paginate events
