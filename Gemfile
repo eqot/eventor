@@ -87,8 +87,7 @@ group :development do
   gem 'rails_best_practices'
   gem 'rubocop', require: false
 
-  # Use profiler
-  gem 'rack-mini-profiler'
+  # Use Bullet for checking N+1 problem
   gem 'bullet'
 end
 
