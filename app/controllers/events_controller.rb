@@ -1,18 +1,20 @@
 require 'icalendar'
 
 class EventsController < ApplicationController
-
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @time = params[:t] || 'all'
     case @time
     when 'all'
-      @events = Event.includes(:owner, :attendees).all.order(:start_time).page(params[:page])
+      @events = Event.includes(:owner, :attendees)
+                .all.order(:start_time).page(params[:page])
     when 'passed'
-      @events = Event.includes(:owner, :attendees).where('start_time < ?', Time.now).order('start_time desc').page(params[:page])
+      @events = Event.includes(:owner, :attendees)
+                .where('start_time < ?', Time.now).order('start_time desc').page(params[:page])
     else # when 'coming'
-      @events = Event.includes(:owner, :attendees).where('start_time > ?', Time.now).order(:start_time).page(params[:page])
+      @events = Event.includes(:owner, :attendees)
+                .where('start_time > ?', Time.now).order(:start_time).page(params[:page])
     end
 
     @view = params[:v] || 'calendar'
@@ -72,5 +74,4 @@ class EventsController < ApplicationController
       :title, :description, :start_time, :end_time, :place
     )
   end
-
 end
