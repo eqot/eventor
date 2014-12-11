@@ -5,7 +5,7 @@ module Markdown
     prefix :api
 
     resource :markdown do
-      desc "Convert markdown into html"
+      desc 'Convert markdown into html'
       post do
         return Markdown.html(params[:content])
       end

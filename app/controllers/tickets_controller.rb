@@ -1,5 +1,4 @@
 class TicketsController < ApplicationController
-
   before_action :store_current_location
   before_action :authenticate_user!
 
@@ -32,5 +31,4 @@ class TicketsController < ApplicationController
     event = Event.find(params[:event_id])
     store_location_for(:user, event_path(event))
   end
-
 end
