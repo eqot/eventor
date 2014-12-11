@@ -26,34 +26,38 @@ class Event < ActiveRecord::Base
   end
 
   def include?(user)
-    self.owner == user || self.attend?(user)
+    owner == user || self.attend?(user)
   end
 
   def to_ics(host)
     event = Icalendar::Event.new
-    event.dtstart       = self.start_time.strftime("%Y%m%dT%H%M%S")
-    event.dtend         = self.end_time.strftime("%Y%m%dT%H%M%S")
-    event.summary       = self.title
-    event.description   = self.description
-    event.location      = self.place
-    event.ip_class      = "PUBLIC"
-    event.created       = self.created_at
-    event.last_modified = self.updated_at
+    event.dtstart       = start_time.strftime('%Y%m%dT%H%M%S')
+    event.dtend         = end_time.strftime('%Y%m%dT%H%M%S')
+    event.summary       = title
+    event.description   = description
+    event.location      = place
+    event.ip_class      = 'PUBLIC'
+    event.created       = created_at
+    event.last_modified = updated_at
     event.uid = event.url = Rails.application.routes.url_helpers.event_url(self, host: host)
-    event.organizer     = 'mailto:' + self.owner.email
+    event.organizer     = 'mailto:' + owner.email
 
     cal = Icalendar::Calendar.new
     cal.add_event(event)
     cal.to_ical
   end
 
+  def iso8601
+    self.start_time = start_time.iso8601
+    self.end_time = end_time.iso8601
+  end
+
   private
 
   def start_time_should_be_before_end_time
     return unless start_time && end_time
+    return unless start_time >= end_time
 
-    if start_time >= end_time
-      errors.add(:start_time, 'should be before end time')
-    end
+    errors.add(:start_time, 'should be before end time')
   end
 end

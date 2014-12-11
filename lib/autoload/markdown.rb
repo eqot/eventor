@@ -1,5 +1,4 @@
 module Markdown
-
   def self.html(text)
     Downr::Markdown.render(text).html_safe
   end
@@ -8,5 +7,4 @@ module Markdown
     html = self.html(text)
     Nokogiri::HTML(html).text
   end
-
 end

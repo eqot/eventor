@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
 
   resources :events, :concerns => :paginatable do
-    resources :tickets
+    resources :tickets, only: [:create, :destroy]
   end
 
   devise_for :users
