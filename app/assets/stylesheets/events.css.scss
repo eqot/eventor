@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $event-attend-color: #ed8c0d;
+$event-edit-color: #e42821;
 
 .nav-tabs a {
   color: #666;
@@ -43,6 +44,11 @@ $event-attend-color: #ed8c0d;
 a.event-attend {
   background-color: $event-attend-color;
   border-color: $event-attend-color;
+}
+
+a.event-edit {
+  background-color: $event-edit-color;
+  border-color: $event-edit-color;
 }
 
 .list-left {

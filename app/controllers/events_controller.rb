@@ -50,6 +50,7 @@ class EventsController < ApplicationController
 
   def edit
     @event = current_user.created_events.find(params[:id])
+    @event.iso8601
   end
 
   def update

@@ -25,19 +25,18 @@
             #markdown
 
   .form-group
-    input.form-item.datepicker type='text' id='date' placeholder='Date'
-    span<>
-      | from
-    input.form-item.timepicker type='text' id='start_time' placeholder='Start time'
-    span<>
-      | to
-    input.form-item.timepicker type='text' id='end_time' placeholder='End time'
+    .panel.panel-default
+      .panel-body
+        #calendar.calendar-edit
 
   .form-group.sr-only
-    = f.datetime_select :start_time
+    = f.text_field :start_time
 
   .form-group.sr-only
-    = f.datetime_select :end_time
+    = f.text_field :end_time
+
+  .form-group.sr-only
+    = f.text_field :id
 
   .form-group
     = f.text_field :place, class: 'form-control', placeholder: :location
