@@ -23,3 +23,9 @@ Style/BlockComments:
 
 Style/ClassAndModuleChildren:
   Enabled: false
+
+Metrics/AbcSize:
+  Max: 32
+
+Metrics/MethodLength:
+  Max: 18
