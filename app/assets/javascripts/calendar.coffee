@@ -42,15 +42,16 @@ initFullCalendar = (element) ->
 loadEvents = (element) ->
   $.get('/events.json?t=all').done (events) ->
     id = parseInt $('#event_id').val()
-    if id?
+    if not isNaN(id)
       events = events.filter (event) ->
         return event.id isnt id
 
     element.fullCalendar 'addEventSource', events
 
-    start = $('#event_start_time').val()
-    end = $('#event_end_time').val()
-    addEvent element, start, end
+    if not isNaN(id)
+      start = $('#event_start_time').val()
+      end = $('#event_end_time').val()
+      addEvent element, start, end
 
 addEvent = (element, start, end) ->
   if renderedEvent?
