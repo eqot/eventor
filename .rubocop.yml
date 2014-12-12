@@ -13,7 +13,7 @@ AllCops:
     - !ruby/regexp /old_and_unused\.rb$/
 
 Metrics/LineLength:
-  Max: 99
+  Max: 110
 
 Style/Documentation:
   Enabled: false
@@ -29,3 +29,6 @@ Metrics/AbcSize:
 
 Metrics/MethodLength:
   Max: 18
+
+Style/SingleSpaceBeforeFirstArg:
+  Enabled: false
