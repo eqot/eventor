@@ -25,6 +25,13 @@ initFullCalendar = (element) ->
       center: 'title'
       right: 'agendaWeek,agendaDay'
     config.defaultView = 'agendaWeek'
+    config.contentHeight = 500
+    config.axisFormat = 'H:mm'
+    config.snapDuration = '00:30:00'
+    config.scrollTime = '8:00'
+    config.businessHours =
+      start: '8:00'
+      end: '18:00'
 
     config.eventClick = ->
       return false
