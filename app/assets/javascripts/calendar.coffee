@@ -1,6 +1,8 @@
 renderedEvent = null
 
 $(document).on "ready page:load", ->
+  convertToLocalTimeAll()
+
   element = $('#calendar')
   return unless element[0]?
 
@@ -15,6 +17,7 @@ initFullCalendar = (element) ->
       right: 'month,agendaWeek,agendaDay'
     weekNumbers: true
     timeFormat: 'H:mm'
+    timezone: 'local'
 
   if element.hasClass 'calendar-edit'
     config.header =
@@ -22,6 +25,13 @@ initFullCalendar = (element) ->
       center: 'title'
       right: 'agendaWeek,agendaDay'
     config.defaultView = 'agendaWeek'
+    config.contentHeight = 500
+    config.axisFormat = 'H:mm'
+    config.snapDuration = '00:30:00'
+    config.scrollTime = '8:00'
+    config.businessHours =
+      start: '8:00'
+      end: '18:00'
 
     config.eventClick = ->
       return false
@@ -68,3 +78,17 @@ addEvent = (element, start, end) ->
 updateEvent = (start, end) ->
   $('#event_start_time').val start.format()
   $('#event_end_time').val end.format()
+
+
+convertToLocalTimeAll = ->
+  elements = $('.datetime')
+  return unless elements[0]?
+
+  for element in elements
+    convertToLocalTime $(element)
+
+convertToLocalTime = (element) ->
+  format = (if element.hasClass('datetime-time') then '' else 'MM/DD/YYYY ') + 'H:mm'
+
+  date = $.fullCalendar.moment(new Date(element.data('date')))
+  element.text(date.format format)

@@ -109,9 +109,6 @@ end
 # Use Grape for web APIs
 gem 'grape'
 
-# Use bootstrap-datetimepicker
-gem 'bootstrap3-datetimepicker-rails'
-
 # Use kaminari for pagination
 gem 'kaminari'
 gem 'kaminari-bootstrap'
@@ -125,3 +122,6 @@ gem 'momentjs-rails'
 
 # Use icalendar
 gem 'icalendar'
+
+# Use RiCal
+gem 'ri_cal'
