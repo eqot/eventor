@@ -29,24 +29,6 @@ class Event < ActiveRecord::Base
     owner == user || self.attend?(user)
   end
 
-  def to_ics(host)
-    event = Icalendar::Event.new
-    event.dtstart       = start_time.strftime('%Y%m%dT%H%M%S')
-    event.dtend         = end_time.strftime('%Y%m%dT%H%M%S')
-    event.summary       = title
-    event.description   = description
-    event.location      = place
-    event.ip_class      = 'PUBLIC'
-    event.created       = created_at
-    event.last_modified = updated_at
-    event.uid = event.url = Rails.application.routes.url_helpers.event_url(self, host: host)
-    event.organizer     = 'mailto:' + owner.email
-
-    cal = Icalendar::Calendar.new
-    cal.add_event(event)
-    cal.to_ical
-  end
-
   def iso8601
     self.start_time = start_time.iso8601
     self.end_time = end_time.iso8601
