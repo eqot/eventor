@@ -2,5 +2,9 @@
   h2
     = @user.name
 
+  - if @user.id == current_user.id
+    .pull-right
+      = link_to 'Import Webcal to calendar app', user_path(@user, format: :ics, only_path: false, protocol: :http)
+
   h4 Registered events
   = render @user.registered_events

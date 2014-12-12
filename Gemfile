@@ -125,3 +125,6 @@ gem 'momentjs-rails'
 
 # Use icalendar
 gem 'icalendar'
+
+# Use RiCal
+gem 'ri_cal'
