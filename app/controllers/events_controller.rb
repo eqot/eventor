@@ -28,11 +28,6 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @ticket = current_user && current_user.tickets.find_by(event_id: params[:id])
-
-    respond_to do |format|
-      format.html
-      format.ics { render text: @event.to_ics(request.host_with_port) }
-    end
   end
 
   def new
