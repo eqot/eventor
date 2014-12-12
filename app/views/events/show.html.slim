@@ -28,7 +28,7 @@ h2 #{@event.title}
 
 .panel.panel-default
   .panel-heading
-    | Attendees
+    | Attendees (#{@event.attendees.length})
   .panel-body#attendees
     = render partial: '/users/user', collection: @event.attendees, spacer_template: 'user_separator'
 
