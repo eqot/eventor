@@ -16,6 +16,7 @@ initFullCalendar = (element) ->
       center: 'title'
       right: 'month,agendaWeek,agendaDay'
     weekNumbers: true
+    firstDay: 1
     timeFormat: 'H:mm'
     timezone: 'local'
 
