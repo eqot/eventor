@@ -16,6 +16,7 @@ initFullCalendar = (element) ->
       center: 'title'
       right: 'month,agendaWeek,agendaDay'
     weekNumbers: true
+    firstDay: 1
     timeFormat: 'H:mm'
     timezone: 'local'
 
@@ -32,6 +33,7 @@ initFullCalendar = (element) ->
     config.businessHours =
       start: '8:00'
       end: '18:00'
+    config.defaultDate = $('#event_start_time').val()
 
     config.eventClick = ->
       return false
