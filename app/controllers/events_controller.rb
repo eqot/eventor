@@ -17,7 +17,7 @@ class EventsController < ApplicationController
                 .where('start_time > ?', Time.now).order(:start_time).page(params[:page])
     end
 
-    @view = params[:v] || 'calendar'
+    @view = params[:v] || 'list'
 
     respond_to do |format|
       format.html
