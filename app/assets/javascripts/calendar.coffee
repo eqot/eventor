@@ -32,6 +32,7 @@ initFullCalendar = (element) ->
     config.businessHours =
       start: '8:00'
       end: '18:00'
+    config.defaultDate = $('#event_start_time').val()
 
     config.eventClick = ->
       return false
