@@ -15,5 +15,6 @@
 //= require twitter/bootstrap
 //= require moment
 //= require fullcalendar
+//= require polymer/webcomponents
 //= require turbolinks
 //= require_tree .
