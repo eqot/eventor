@@ -125,3 +125,6 @@ gem 'icalendar'
 
 # Use RiCal
 gem 'ri_cal'
+
+# Use Polymer
+gem 'polymer-rails'
