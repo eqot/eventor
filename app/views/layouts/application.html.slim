@@ -8,6 +8,9 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
+    link rel="import" href="http://localhost:3001/pocket-4d.html"
+    = javascript_include_tag 'http://localhost:3001/assets/fdbk.js'
+
   body
     = render partial: 'layouts/header'
 
@@ -25,3 +28,5 @@ html
       = yield
 
     = render partial: 'layouts/footer'
+
+    button#fdbk style="position: fixed; right: 0; top: 0;" Send feedback
