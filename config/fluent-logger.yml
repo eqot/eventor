@@ -1,7 +1,7 @@
 default: &default
   fluent_host:   <%= ENV['FLUENTD_HOST'] %>
   fluent_port:   24224
-  tag:           'railsbase'
+  tag:           'eventor'
   messages_type: 'string'
 
 development:
