@@ -3,7 +3,7 @@ $(document).on "ready page:load", ->
     $('#fdbk').remove()
     return
 
-  fdbk = new Fdbk()
+  fdbk = new Fdbk 'Eventor'
 
   $('#fdbk').click ->
     fdbk.open()
