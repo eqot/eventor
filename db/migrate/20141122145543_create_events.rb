@@ -6,6 +6,7 @@ class CreateEvents < ActiveRecord::Migration
       t.datetime :start_time, null: false
       t.datetime :end_time,   null: false
       t.string :place,        null: false
+      t.string :file
       t.integer :owner_id
 
       t.timestamps null: false

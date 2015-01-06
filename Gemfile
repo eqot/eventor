@@ -124,3 +124,6 @@ gem 'ri_cal'
 
 # Use Polymer
 gem 'polymer-rails'
+
+# Use carrierwave for uploading image
+gem 'carrierwave'

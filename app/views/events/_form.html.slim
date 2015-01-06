@@ -41,6 +41,15 @@
   .form-group
     = f.text_field :place, class: 'form-control', placeholder: :location
 
+  .form-group
+    - if event.file?
+      div
+        img src="#{event.file}"
+        =< f.check_box :remove_file
+        | Remove this file
+    = f.file_field :file
+    = f.hidden_field :file_cache
+
   .button-group
     = f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }
     = link_to 'Cancel', event, class: "btn btn-default"

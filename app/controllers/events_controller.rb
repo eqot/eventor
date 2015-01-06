@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @time = params[:t] || 'all'
+    @time = params[:t] || 'coming'
     case @time
     when 'all'
       @events = Event.includes(:owner, :attendees)
@@ -67,7 +67,7 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(
-      :title, :description, :start_time, :end_time, :place
+      :title, :description, :start_time, :end_time, :place, :file, :file_cache, :remove_file
     )
   end
 end
