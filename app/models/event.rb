@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
   delegate :name, to: :owner, prefix: true
 
+  mount_uploader :file, FileUploader
+
   validates :title, presence: true
   validates :start_time, presence: true
   validates :end_time, presence: true
