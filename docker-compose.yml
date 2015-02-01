@@ -1,0 +1,8 @@
+web:
+  build: .
+  ports:
+    - "8001:3000"
+  external_links:
+    - dockerdb_mysql_1:db
+  environment:
+    - EVENTOR_DATABASE_HOST=db
