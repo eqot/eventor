@@ -15,7 +15,7 @@ default: &default
   pool: 5
   username: root
   password:
-  host: localhost
+  host: <%= ENV['EVENTOR_DATABASE_HOST'] || localhost %>
 
 development:
   <<: *default
@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: eventor_production
-  username: eventor
-  password: <%= ENV['EVENTOR_DATABASE_PASSWORD'] %>
+  # username: eventor
+  # password: <%= ENV['EVENTOR_DATABASE_PASSWORD'] %>
