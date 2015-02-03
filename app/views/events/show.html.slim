@@ -1,7 +1,8 @@
 h2 #{@event.title}
 
-.attached-image
-  img src="#{@event.file}"
+- if @event.file?
+  .attached-image
+    img src="#{@event.file}"
 
 .panel.panel-default
   .panel-heading
