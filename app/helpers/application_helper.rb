@@ -7,4 +7,8 @@ module ApplicationHelper
     when 'error'   then 'alert-danger'
     end
   end
+
+  def blog_url
+    ENV["EVENTOR_BLOG_URL"]
+  end
 end
