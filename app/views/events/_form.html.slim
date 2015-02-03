@@ -42,8 +42,11 @@
     = f.text_field :place, class: 'form-control', placeholder: :location
 
   .form-group
+    = f.text_field :image_url, class: 'form-control', placeholder: "Image URL"
+
+  .form-group
     - if event.file?
-      div
+      .attached-image
         img src="#{event.file}"
         =< f.check_box :remove_file
         | Remove this file

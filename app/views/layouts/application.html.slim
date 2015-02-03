@@ -8,10 +8,11 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-    link rel="import" href="http://localhost:3001/pocket-4d.html"
-    = stylesheet_link_tag 'http://localhost:3001/assets/fdbk.css'
-    = javascript_include_tag 'http://localhost:3001/assets/html2canvas.js'
-    = javascript_include_tag 'http://localhost:3001/assets/fdbk.js'
+    - if ENV["FDBK_URL"].present?
+      link rel="import" href="#{ENV["FDBK_URL"]}/pocket-4d.html"
+      = stylesheet_link_tag "#{ENV["FDBK_URL"]}/assets/fdbk.css"
+      = javascript_include_tag "#{ENV["FDBK_URL"]}/assets/html2canvas.js"
+      = javascript_include_tag "#{ENV["FDBK_URL"]}/assets/fdbk.js"
 
   body
     = render partial: 'layouts/header'

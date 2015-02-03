@@ -67,7 +67,7 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(
-      :title, :description, :start_time, :end_time, :place, :file, :file_cache, :remove_file
+      :title, :description, :start_time, :end_time, :place, :image_url, :file, :file_cache, :remove_file
     )
   end
 end
