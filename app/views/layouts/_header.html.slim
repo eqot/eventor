@@ -17,9 +17,9 @@ header.navbar.navbar-default role="navigation"
           = link_to "Calendar", root_path(v: 'calendar')
         li
           = link_to "List", root_path
-        - if blog_url()
+        - if ENV["EVENTOR_BLOG_URL"]
           li
-            = link_to "Blog", blog_url()
+            = link_to "Blog", ENV["EVENTOR_BLOG_URL"]
 
       ul.nav.navbar-nav.navbar-right
         li
