@@ -1,8 +1,11 @@
 h2 #{@event.title}
 
-- if @event.file?
+- if @event.image_url.present?
   .attached-image
-    img src="#{@event.file}"
+    = image_tag(@event.image_url)
+- elsif @event.file.present?
+  .attached-image
+    = image_tag(@event.file)
 
 .panel.panel-default
   .panel-heading
