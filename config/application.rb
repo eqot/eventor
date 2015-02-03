@@ -43,5 +43,7 @@ module RailsBase42
         request_specs: false
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
+
+    config.version = '1.0.0'
   end
 end
