@@ -7,3 +7,4 @@ web:
   environment:
     - EVENTOR_DATABASE_HOST=db
     - EVENTOR_BLOG_URL=http://ubuntu.local:8000/tag/eventor/
+    - FDBK_URL=
