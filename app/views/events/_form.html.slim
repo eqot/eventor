@@ -43,7 +43,7 @@
 
   .form-group
     - if event.file?
-      div
+      .attached-image
         img src="#{event.file}"
         =< f.check_box :remove_file
         | Remove this file
