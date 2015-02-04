@@ -127,3 +127,6 @@ gem 'polymer-rails'
 
 # Use carrierwave for uploading image
 gem 'carrierwave'
+
+# Use Google Analytics
+gem 'rack-google-analytics'
