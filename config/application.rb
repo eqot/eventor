@@ -44,7 +44,10 @@ module RailsBase42
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
 
-    config.middleware.use Rack::GoogleAnalytics, :tracker => 'UA-45975690-2'
+    # config.middleware.use Rack::GoogleAnalytics, :tracker => 'UA-45975690-2'
+    config.middleware.use(Rack::Tracker) do
+      handler :google_analytics, { tracker: 'UA-45975690-2' }
+    end
 
     config.version = '1.1.0'
   end

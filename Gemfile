@@ -130,3 +130,4 @@ gem 'carrierwave'
 
 # Use Google Analytics
 gem 'rack-google-analytics'
+gem 'rack-tracker'
