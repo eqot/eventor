@@ -131,3 +131,6 @@ gem 'carrierwave'
 # Use Google Analytics
 gem 'rack-google-analytics'
 gem 'rack-tracker'
+
+# Use Ridgepole for DB management
+gem 'ridgepole'
