@@ -1,0 +1,5 @@
+require 'users.schema'
+
+require 'events.schema'
+
+require 'tickets.schema'
