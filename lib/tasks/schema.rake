@@ -12,4 +12,14 @@ namespace :schema do
   task(:diff) do
     puts `bundle exec ridgepole -E #{env} --diff #{config} #{schema}`
   end
+
+  desc 'Dry run'
+  task(:dryrun) do
+    puts `bundle exec ridgepole -E #{env} -c #{config} -f #{schema} --apply --dry-run`
+  end
+
+  desc 'Apply'
+  task(:apply) do
+    puts `bundle exec ridgepole -E #{env} -c #{config} -f #{schema} --apply`
+  end
 end
