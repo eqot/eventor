@@ -49,6 +49,6 @@ module RailsBase42
       handler :google_analytics, { tracker: 'UA-45975690-2' }
     end
 
-    config.version = '1.1.0'
+    config.version = '1.2.0'
   end
 end
