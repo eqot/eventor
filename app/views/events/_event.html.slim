@@ -18,11 +18,11 @@
 
       div
         span.time-slot
-          = show_timeslot(event.start_time, event.end_time)
+          = show_timeslot(event.invitation.start_time, event.invitation.end_time)
 
-        span.place
+        span.location
           | , @
-          = event.place
+          = event.invitation.location
 
         .pull-right
           = event.owner_name

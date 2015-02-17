@@ -64,8 +64,8 @@ loadEvents = (element) ->
     element.fullCalendar 'addEventSource', events
 
     if not isNaN(id)
-      start = $('#event_start_time').val()
-      end = $('#event_end_time').val()
+      start = $('#event_invitation_attributes_start_time').val()
+      end = $('#event_invitation_attributes_end_time').val()
       addEvent element, start, end
 
 addEvent = (element, start, end) ->
@@ -81,8 +81,8 @@ addEvent = (element, start, end) ->
   renderedEvent = element.fullCalendar 'renderEvent', eventData, true
 
 updateEvent = (start, end) ->
-  $('#event_start_time').val start.format()
-  $('#event_end_time').val end.format()
+  $('#event_invitation_attributes_start_time').val start.format()
+  $('#event_invitation_attributes_end_time').val end.format()
 
 
 convertToLocalTimeAll = ->

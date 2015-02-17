@@ -29,29 +29,30 @@
       .panel-body
         #calendar.calendar-edit
 
-  .form-group.sr-only
-    = f.text_field :start_time
+  = f.fields_for :invitation do |f_invitation|
+    .form-group.sr-only
+      = f_invitation.text_field :start_time
 
-  .form-group.sr-only
-    = f.text_field :end_time
+    .form-group.sr-only
+      = f_invitation.text_field :end_time
+
+    .form-group
+      = f_invitation.text_field :location, class: 'form-control', placeholder: :location
 
   .form-group.sr-only
     = f.text_field :id
 
   .form-group
-    = f.text_field :place, class: 'form-control', placeholder: :location
-
-  .form-group
     = f.text_field :image_url, class: 'form-control', placeholder: "Image URL"
 
   .form-group
-    - if event.file?
+    - if event.image.present?
       .attached-image
-        img src="#{event.file}"
-        =< f.check_box :remove_file
-        | Remove this file
-    = f.file_field :file
-    = f.hidden_field :file_cache
+        img src="#{event.image}"
+        =< f.check_box :remove_image
+        | Remove this image
+    = f.file_field :image
+    = f.hidden_field :image_cache
 
   .button-group
     = f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }

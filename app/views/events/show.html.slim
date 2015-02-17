@@ -1,11 +1,11 @@
 h2 #{@event.title}
 
-- if @event.image_url.present?
+- if @event.image.present?
+  .attached-image
+    = image_tag(@event.image)
+- elsif @event.image_url.present?
   .attached-image
     = image_tag(@event.image_url)
-- elsif @event.file.present?
-  .attached-image
-    = image_tag(@event.file)
 
 .panel.panel-default
   .panel-heading
@@ -25,13 +25,13 @@ h2 #{@event.title}
     | Date and time
   .panel-body
     span.time-slot
-      = show_timeslot(@event.start_time, @event.end_time)
+      = show_timeslot(@event.invitation.start_time, @event.invitation.end_time)
 
 .panel.panel-default
   .panel-heading
     | Location
   .panel-body
-    = @event.place
+    = @event.invitation.location
 
 .panel.panel-default
   .panel-heading
