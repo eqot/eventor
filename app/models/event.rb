@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
   has_many :attendees, through: :tickets, source: :user
 
   has_one :invitation, class_name: EventInvitation
+  accepts_nested_attributes_for :invitation, allow_destroy: true
 
   belongs_to :owner, class_name: 'User'
   delegate :name, to: :owner, prefix: true
