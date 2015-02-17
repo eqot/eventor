@@ -7,14 +7,18 @@ class EventsController < ApplicationController
     @time = params[:t] || 'coming'
     case @time
     when 'all'
-      @events = Event.includes(:owner, :attendees)
-                .all.order(:start_time).page(params[:page])
+      @events = Event.includes(:owner, :attendees, :invitation)
+                .order('event_invitations.start_time')
     when 'passed'
-      @events = Event.includes(:owner, :attendees)
-                .where('start_time < ?', Time.now).order('start_time desc').page(params[:page])
+      @events = Event.includes(:owner, :attendees, :invitation)
+                .where('event_invitations.start_time < ?', Time.now)
+                .order('event_invitations.start_time desc')
+                .page(params[:page])
     else # when 'coming'
-      @events = Event.includes(:owner, :attendees)
-                .where('start_time > ?', Time.now).order(:start_time).page(params[:page])
+      @events = Event.includes(:owner, :attendees, :invitation)
+                .where('event_invitations.start_time > ?', Time.now)
+                .order('event_invitations.start_time')
+                .page(params[:page])
     end
 
     @view = params[:v] || 'list'
@@ -44,6 +48,7 @@ class EventsController < ApplicationController
     # ga_track_event('Events', 'new')
 
     @event = current_user.created_events.build
+    @event.build_invitation
   end
 
   def create
@@ -61,7 +66,7 @@ class EventsController < ApplicationController
     # ga_track_event('Events', 'edit', params[:id])
 
     @event = current_user.created_events.find(params[:id])
-    @event.iso8601
+    @event.invitation.iso8601
   end
 
   def update
@@ -79,6 +84,7 @@ class EventsController < ApplicationController
     # ga_track_event('Events', 'destroy', params[:id])
 
     @event = current_user.created_events.find(params[:id])
+    @event.invitation.destroy!
     @event.destroy!
     redirect_to events_path, notice: 'Deleted'
   end
@@ -87,7 +93,8 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(
-      :title, :description, :start_time, :end_time, :place, :image_url, :file, :file_cache, :remove_file
+      :title, :description, :image, :image_cache, :remove_image, :image_url,
+      invitation_attributes: [:start_time, :end_time, :location]
     )
   end
 end
