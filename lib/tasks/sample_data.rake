@@ -11,6 +11,7 @@ end
 def clean
   # User.all.delete_all
   Event.all.delete_all
+  EventInvitation.all.delete_all
 end
 
 def make_users
