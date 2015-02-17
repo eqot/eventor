@@ -2,14 +2,14 @@ namespace :db do
   desc 'Fill database with sample data'
   task populate: :environment do
     clean
-    make_users
+    # make_users
     make_events
     register_events
   end
 end
 
 def clean
-  User.all.delete_all
+  # User.all.delete_all
   Event.all.delete_all
 end
 
