@@ -39,13 +39,17 @@ def make_events
       end
       end_time = start_time + 1.hour
 
-      Event.create!(
+      event = Event.create!(
         title: Faker::Lorem.sentence,
         description: Faker::Lorem.paragraph,
+        owner_id: user.id
+      )
+
+      EventInvitation.create!(
         start_time: start_time,
         end_time: end_time,
-        place: Faker::Address.city,
-        owner_id: user.id
+        location: Faker::Address.city,
+        event_id: event.id
       )
     end
   end
