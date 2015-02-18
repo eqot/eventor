@@ -15,6 +15,7 @@ html
       = javascript_include_tag "#{ENV["FDBK_URL"]}/assets/fdbk.js"
 
   body
+    = render partial: 'layouts/google_tag_manager'
     = render partial: 'layouts/header'
 
     .container
