@@ -253,9 +253,6 @@ GEM
     rack (1.6.0)
     rack-accept (0.4.5)
       rack (>= 0.4)
-    rack-google-analytics (1.2.0)
-      actionpack
-      activesupport
     rack-livereload (0.3.15)
       rack
     rack-mini-profiler (0.9.2)
@@ -264,10 +261,6 @@ GEM
       rack (>= 1.0.0)
     rack-test (0.6.3)
       rack (>= 1.0)
-    rack-tracker (0.3.0)
-      activesupport (>= 3.0)
-      rack (>= 1.4.0)
-      tilt (~> 1.4.1)
     rails (4.2.0)
       actionmailer (= 4.2.0)
       actionpack (= 4.2.0)
@@ -462,10 +455,8 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
-  rack-google-analytics
   rack-livereload
   rack-mini-profiler
-  rack-tracker
   rails (= 4.2.0)
   rails_best_practices
   rb-fsevent

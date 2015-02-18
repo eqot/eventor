@@ -89,7 +89,4 @@ Rails.application.configure do
 
   # Devise
   config.action_mailer.default_url_options = { host: 'eventor', port: 3000 }
-
-  # rack-google-analytics
-  # config.middleware.use Rack::GoogleAnalytics, :tracker => 'UA-45975690-2'
 end
