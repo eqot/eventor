@@ -46,13 +46,13 @@
     = f.text_field :image_url, class: 'form-control', placeholder: "Image URL"
 
   .form-group
-    - if event.image.present?
+    - if event.image_file.present?
       .attached-image
-        img src="#{event.image}"
-        =< f.check_box :remove_image
+        img src="#{event.image_file}"
+        =< f.check_box :remove_image_file
         | Remove this image
-    = f.file_field :image
-    = f.hidden_field :image_cache
+    = f.file_field :image_file
+    = f.hidden_field :image_file_cache
 
   .button-group
     = f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }

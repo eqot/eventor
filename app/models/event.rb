@@ -8,7 +8,7 @@ class Event < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
   delegate :name, to: :owner, prefix: true
 
-  mount_uploader :image, FileUploader
+  mount_uploader :image_file, FileUploader
 
   validates :title, presence: true
 

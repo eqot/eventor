@@ -1,8 +1,8 @@
 h2 #{@event.title}
 
-- if @event.image.present?
+- if @event.image_file.present?
   .attached-image
-    = image_tag(@event.image)
+    = image_tag(@event.image_file)
 - elsif @event.image_url.present?
   .attached-image
     = image_tag(@event.image_url)
