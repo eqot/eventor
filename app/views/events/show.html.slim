@@ -9,42 +9,43 @@ h2 #{@event.title}
 
 .panel.panel-default
   .panel-heading
-    | Organizer
+    = t('view.event.organizer')
   .panel-body
     = @event.owner_name
 
 .panel.panel-default
   .panel-heading
-    | Description
+    = t('view.event.description')
   .panel-body
     - if @event.description?
       = Markdown.html @event.description
 
 .panel.panel-default
   .panel-heading
-    | Date and time
+    = t('view.event.date_time')
   .panel-body
     span.time-slot
       = show_timeslot(@event.invitation.start_time, @event.invitation.end_time)
 
 .panel.panel-default
   .panel-heading
-    | Location
+    = t('view.event.location')
   .panel-body
     = @event.invitation.location
 
 .panel.panel-default
   .panel-heading
-    | Attendees (#{@event.attendees.length})
+    => t('view.event.attendees')
+    | (#{@event.attendees.length})
   .panel-body#attendees
     = render partial: '/users/user', collection: @event.attendees, spacer_template: 'user_separator'
 
 .button-group
   - if @event.owner?(current_user)
-    = link_to 'Edit', edit_event_path(@event), class: 'btn btn-info'
-    = link_to 'Delete', event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'}
+    = link_to t('view.event.edit'), edit_event_path(@event), class: 'btn btn-info'
+    = link_to t('view.event.delete'), event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'}
   - else
     - if not @event.attend?(current_user)
-      = link_to 'Attend', event_tickets_path(@event, @ticket), class: 'btn btn-info', method: :post
+      = link_to t('view.event.attend'), event_tickets_path(@event, @ticket), class: 'btn btn-info', method: :post
     - else
-      = link_to 'Cancel', event_ticket_path(@event, @ticket), class: 'btn btn-danger', method: :delete
+      = link_to t('view.event.cancel'), event_ticket_path(@event, @ticket), class: 'btn btn-danger', method: :delete

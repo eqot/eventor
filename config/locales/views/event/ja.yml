@@ -1,0 +1,28 @@
+ja:
+  view:
+    event:
+      create_event: 'イベント作成'
+      edit_event: 'イベント変更'
+
+      organizer: '主催者'
+      title: 'タイトル'
+      description: '説明文'
+      date_time: '日時'
+      location: '場所'
+      image_url: '画像 URL'
+      attendees: '参加者'
+
+      text: 'テキスト'
+      preview: 'プレビュー'
+
+      create: '作成'
+      update: '更新'
+      edit: '変更'
+      delete: '削除'
+      attend: '参加'
+      cancel: 'キャンセル'
+
+      unit: '人'
+
+      coming_events: '今後のイベントを見る'
+      passed_events: '過去のイベントを見る'

@@ -1,8 +1,8 @@
 .pull-right
   - if time == 'passed'
-    = link_to "See coming events", root_path(v: 'list'), class: 'btn btn-info'
+    = link_to t('view.event.coming_events'), root_path(v: 'list'), class: 'btn btn-info'
   - else
-    = link_to "See passed events", root_path(v: 'list', t: 'passed'), class: 'btn btn-info'
+    = link_to t('view.event.passed_events'), root_path(v: 'list', t: 'passed'), class: 'btn btn-info'
 .clearfix
 br
 
