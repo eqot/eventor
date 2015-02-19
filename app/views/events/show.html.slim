@@ -25,8 +25,7 @@ h2 #{@event.title}
     | Date and time
   .panel-body
     span.time-slot
-      - if @event.invitation.start_time.present? && @event.invitation.end_time.present?
-        = show_timeslot(@event.invitation.start_time, @event.invitation.end_time)
+      = show_timeslot(@event.invitation.start_time, @event.invitation.end_time)
 
 .panel.panel-default
   .panel-heading
