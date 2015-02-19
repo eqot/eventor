@@ -1,6 +1,8 @@
 class EventInvitation < ActiveRecord::Base
   belongs_to :event
 
+  validates :start_time, presence: true
+  validates :end_time, presence: true
   validate :start_time_should_be_before_end_time
 
   def iso8601

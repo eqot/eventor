@@ -6,7 +6,7 @@
           li #{msg}
 
   .form-group
-    = f.text_field :title, class: 'form-control', placeholder: :title
+    = f.text_field :title, class: 'form-control', placeholder: t('view.event.title')
 
   .form-group
     .panel.panel-default
@@ -14,13 +14,13 @@
         ul.nav.nav-tabs role="tablist"
           li.active
             a href="#write" role="tab" data-toggle="tab"
-              | Write
+              = t('view.event.text')
           li
             a href="#preview" role="tab" data-toggle="tab"
-              | Preview
+              = t('view.event.preview')
         .tab-content
           .tab-pane.fade.in.active#write
-            = f.text_area :description, class: 'form-control', rows: 10, placeholder: :description
+            = f.text_area :description, class: 'form-control', rows: 10, placeholder: t('view.event.description')
           .tab-pane.fade#preview
             #markdown
 
@@ -37,23 +37,23 @@
       = f_invitation.text_field :end_time
 
     .form-group
-      = f_invitation.text_field :location, class: 'form-control', placeholder: :location
+      = f_invitation.text_field :location, class: 'form-control', placeholder: t('view.event.location')
 
   .form-group.sr-only
     = f.text_field :id
 
   .form-group
-    = f.text_field :image_url, class: 'form-control', placeholder: "Image URL"
+    = f.text_field :image_url, class: 'form-control', placeholder: t('view.event.image_url')
 
   .form-group
-    - if event.image.present?
+    - if event.image_file.present?
       .attached-image
-        img src="#{event.image}"
-        =< f.check_box :remove_image
+        img src="#{event.image_file}"
+        =< f.check_box :remove_image_file
         | Remove this image
-    = f.file_field :image
-    = f.hidden_field :image_cache
+    = f.file_field :image_file
+    = f.hidden_field :image_file_cache
 
   .button-group
     = f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }
-    = link_to 'Cancel', event, class: "btn btn-default"
+    = link_to t('view.event.cancel'), event, class: "btn btn-default"

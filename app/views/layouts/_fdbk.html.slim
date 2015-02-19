@@ -1,0 +1,5 @@
+- if ENV["FDBK_URL"].present?
+  link rel="import" href="#{ENV["FDBK_URL"]}/pocket-4d.html"
+  = stylesheet_link_tag "#{ENV["FDBK_URL"]}/assets/fdbk.css"
+  = javascript_include_tag "#{ENV["FDBK_URL"]}/assets/html2canvas.js"
+  = javascript_include_tag "#{ENV["FDBK_URL"]}/assets/fdbk.js"

@@ -1,0 +1,13 @@
+ja:
+  view:
+    about: 'このサービスについて'
+    calendar: 'カレンダー表示'
+    list: 'リスト表示'
+    blog: 'ブログ'
+
+    create: '作成'
+    event: 'イベント'
+
+    sign_in: 'サインイン'
+    sign_out: 'サインアウト'
+    my_page: 'マイページ'

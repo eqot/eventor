@@ -12,28 +12,28 @@ header.navbar.navbar-default role="navigation"
 
       ul.nav.navbar-nav
         li
-          = link_to "About", about_path
+          = link_to t('view.about'), about_path
         li
-          = link_to "Calendar", root_path(v: 'calendar')
+          = link_to t('view.calendar'), root_path(v: 'calendar')
         li
-          = link_to "List", root_path
+          = link_to t('view.list'), root_path
         - if ENV["EVENTOR_BLOG_URL"]
           li
-            = link_to "Blog", ENV["EVENTOR_BLOG_URL"]
+            = link_to t('view.blog'), ENV["EVENTOR_BLOG_URL"]
 
       ul.nav.navbar-nav.navbar-right
         li
           .dropdown
             button.btn.btn-default.dropdown-toggle#dropdownMenuAction type="button" data-toggle="dropdown"
-              | Create
+              = t('view.create')
               span.caret<
             ul.dropdown-menu role="menu" aria-labelledby="dropdownMenuAction"
               li role="presentation"
-                = link_to "Event", new_event_path
+                = link_to t('view.event'), new_event_path
         li
           div
             - if !user_signed_in?
-              = link_to "Sign in", sign_in_path, class: "btn btn-success"
+              = link_to t('view.sign_in'), sign_in_path, class: "btn btn-success"
             - else
               .dropdown
                 button.btn.btn-default.dropdown-toggle#dropdownMenuUser type="button" data-toggle="dropdown"
@@ -41,7 +41,7 @@ header.navbar.navbar-default role="navigation"
                   span.caret<
                 ul.dropdown-menu role="menu" aria-labelledby="dropdownMenuUser"
                   li role="presentation"
-                    = link_to "My page", user_path(current_user)
+                    = link_to t('view.my_page'), user_path(current_user)
                   li.divider role="presentation"
                   li role="presentation"
-                    = link_to "Sign out", sign_out_path
+                    = link_to t('view.sign_out'), sign_out_path
