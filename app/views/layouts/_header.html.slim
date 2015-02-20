@@ -12,14 +12,14 @@ header.navbar.navbar-default role="navigation"
 
       ul.nav.navbar-nav
         li
-          = link_to t('view.about'), about_path
-        li
           = link_to t('view.calendar'), root_path(v: 'calendar')
         li
           = link_to t('view.list'), root_path
         - if ENV["EVENTOR_BLOG_URL"]
           li
             = link_to t('view.blog'), ENV["EVENTOR_BLOG_URL"]
+        li
+          = link_to t('view.about'), about_path
 
       ul.nav.navbar-nav.navbar-right
         li
