@@ -19,6 +19,7 @@ initFullCalendar = (element) ->
     firstDay: 1
     timeFormat: 'H:mm'
     timezone: 'local'
+    lang: 'ja'
 
   if element.hasClass 'calendar-edit'
     config.header =
