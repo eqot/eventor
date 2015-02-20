@@ -6,7 +6,7 @@ ja:
     blog: 'ブログ'
 
     create: '作成'
-    event: 'イベント'
+    event_creation: 'イベント'
 
     sign_in: 'サインイン'
     sign_out: 'サインアウト'
