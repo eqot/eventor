@@ -33,7 +33,7 @@ initFullCalendar = (element) ->
       start: '8:00'
       end: '18:00'
 
-    date = $('#event_start_time').val()
+    date = $('#event_invitation_attributes_start_time').val()
     if date? and date.length > 0
       config.defaultDate = date
 
