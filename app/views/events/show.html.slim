@@ -25,7 +25,9 @@ h2 #{@event.title}
     = t('view.event.date_time')
   .panel-body
     span.time-slot
-      = show_timeslot(@event.invitation.start_time, @event.invitation.end_time)
+      => I18n.l(@event.invitation.start_time.to_time)
+      | -
+      =< I18n.l(@event.invitation.end_time.to_time, format: :short)
 
 .panel.panel-default
   .panel-heading
