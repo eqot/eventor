@@ -1,3 +1,9 @@
+1.4.0 (Feb 22 2015)
+===================
+
+* Support i18n more
+* Fix issue to show wrong week in calendar on event editing
+
 1.3.0 (Feb 20 2015)
 ===================
 
