@@ -5,11 +5,6 @@ class EventInvitation < ActiveRecord::Base
   validates :end_time, presence: true
   validate :start_time_should_be_before_end_time
 
-  def iso8601
-    self.start_time = start_time.iso8601
-    self.end_time = end_time.iso8601
-  end
-
   private
 
   def start_time_should_be_before_end_time

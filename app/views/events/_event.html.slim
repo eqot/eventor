@@ -18,7 +18,9 @@
 
       div
         span.time-slot
-          = show_timeslot(event.invitation.start_time, event.invitation.end_time)
+          => I18n.l(event.invitation.start_time.to_time)
+          | -
+          =< I18n.l(event.invitation.end_time.to_time, format: :short)
 
         span.location
           | , @

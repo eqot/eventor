@@ -11,3 +11,8 @@ ja:
     sign_in: 'サインイン'
     sign_out: 'サインアウト'
     my_page: 'マイページ'
+
+  time:
+    formats:
+      default: ! '%Y/%m/%d (%a) %H:%M'
+      short: ! '%H:%M'

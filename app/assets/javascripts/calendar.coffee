@@ -1,8 +1,6 @@
 renderedEvent = null
 
 $(document).on "ready page:load", ->
-  convertToLocalTimeAll()
-
   element = $('#calendar')
   return unless element[0]?
 
@@ -84,17 +82,3 @@ addEvent = (element, start, end) ->
 updateEvent = (start, end) ->
   $('#event_invitation_attributes_start_time').val start.format()
   $('#event_invitation_attributes_end_time').val end.format()
-
-
-convertToLocalTimeAll = ->
-  elements = $('.datetime')
-  return unless elements[0]?
-
-  for element in elements
-    convertToLocalTime $(element)
-
-convertToLocalTime = (element) ->
-  format = (if element.hasClass('datetime-time') then '' else 'MM/DD/YYYY ') + 'H:mm'
-
-  date = $.fullCalendar.moment(new Date(element.data('date')))
-  element.text(date.format format)
