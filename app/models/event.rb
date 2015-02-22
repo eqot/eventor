@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  enum visibility: { everyone: 10, members_only: 20 }
+
   has_many :tickets
   has_many :attendees, through: :tickets, source: :user
 

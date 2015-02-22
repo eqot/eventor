@@ -54,6 +54,12 @@
     = f.file_field :image_file
     = f.hidden_field :image_file_cache
 
+  .form-group
+    .checkbox
+      label
+        = f.check_box :visibility, {}, "members_only", "everyone"
+        = t('view.event.members_only')
+
   .button-group
     = f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }
     = link_to t('view.event.cancel'), event, class: "btn btn-default"
