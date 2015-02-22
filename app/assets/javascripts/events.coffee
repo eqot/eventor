@@ -4,6 +4,7 @@
 
 $(document).on "ready page:load", ->
   enableMarkdownPreview()
+  changeVisibilityMembersTextBox()
 
 enableMarkdownPreview = ->
   $('a[href=#preview]').on 'shown.bs.tab', ->
@@ -13,3 +14,10 @@ enableMarkdownPreview = ->
 
     $.post('/api/v1/markdown', data).done (html) ->
       $('#markdown').html html
+
+changeVisibilityMembersTextBox = ->
+  $('input[id=event_visibility]').change ->
+    if this.checked
+      $('#event_members').removeClass('hidden')
+    else
+      $('#event_members').addClass('hidden')
