@@ -5,6 +5,7 @@ create_table "events", force: :cascade do |t|
   t.string   "image_url",   limit: 255
   t.integer  "status",      limit: 4
   t.integer  "visibility",  limit: 4
+  t.text     "members",     limit: 65535
   t.integer  "owner_id",    limit: 4
   t.datetime "created_at",                null: false
   t.datetime "updated_at",                null: false

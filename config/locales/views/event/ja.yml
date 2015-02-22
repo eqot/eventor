@@ -12,6 +12,7 @@ ja:
       image_url: '画像 URL'
       attendees: '参加者'
       members_only: 'メンバー限定'
+      members: 'メンバー'
 
       text: 'テキスト'
       preview: 'プレビュー'

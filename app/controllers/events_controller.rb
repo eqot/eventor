@@ -74,7 +74,7 @@ class EventsController < ApplicationController
     params.require(:event).permit(
       :title, :description,
       :image_file, :image_file_cache, :remove_image_file, :image_url,
-      :visibility,
+      :visibility, :members,
       invitation_attributes: [:start_time, :end_time, :location]
     )
   end
