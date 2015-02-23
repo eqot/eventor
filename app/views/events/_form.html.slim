@@ -60,7 +60,11 @@
         = f.check_box :visibility, {}, "members_only", "everyone"
         = t('view.event.members_only')
 
-    = f.text_field :members, class: 'form-control', placeholder: t('view.event.members')
+    = f.text_field :members, class: 'form-control hidden'
+
+    #members_form
+      #members
+      input class="form-control autocomplete autocomplete-users" placeholder="#{t('view.event.members')}"
 
   .button-group
     = f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }

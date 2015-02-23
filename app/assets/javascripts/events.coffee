@@ -18,6 +18,6 @@ enableMarkdownPreview = ->
 changeVisibilityMembersTextBox = ->
   $('input[id=event_visibility]').change ->
     if this.checked
-      $('#event_members').removeClass('hidden')
+      $('#members_form').removeClass('hidden')
     else
-      $('#event_members').addClass('hidden')
+      $('#members_form').addClass('hidden')

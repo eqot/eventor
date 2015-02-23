@@ -130,3 +130,6 @@ gem 'carrierwave'
 
 # Use Ridgepole for DB management
 gem 'ridgepole'
+
+# Use jQuery UI
+gem 'jquery-ui-rails'
