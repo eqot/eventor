@@ -85,6 +85,9 @@ group :development do
 
   # Use Bullet for checking N+1 problem
   gem 'bullet'
+
+  # Use quiet_assets to disable asset logs
+  gem 'quiet_assets'
 end
 
 # Use RSpec and related gems for testing
