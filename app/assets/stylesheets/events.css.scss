@@ -86,7 +86,17 @@ a.event-edit {
 #members {
   margin-bottom: 8px;
 
-  .label {
-    margin-right: 4px;
+  span.label {
+    margin-right: 6px;
+  }
+
+  button.item-close {
+    float: none;
+    font-size: 16px;
+    margin-left: 4px;
+
+    :hover {
+      color: red;
+    }
   }
 }
