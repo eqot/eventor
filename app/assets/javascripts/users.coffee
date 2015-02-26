@@ -58,12 +58,18 @@ customizeAutocompleteFilter = ->
     return $.grep array, (value) ->
       return matcher.test value.label || value.value || value
 
+addCurrentMembers = (elements, map) ->
+  ids = $('#event_members').val().split(',')
+  for id in ids
+    injectItem elements, map[id]
+
 enableAutoComplete = ->
   elements = $('.autocomplete.autocomplete-users')
   return unless elements.length > 0
 
   attachedItems = []
   itemsMap = {}
+  idsMap = {}
 
   $.get '/users.json', (res) ->
     users = []
@@ -79,6 +85,9 @@ enableAutoComplete = ->
         label: user.name
 
       itemsMap[user.name] = user
+      idsMap[user.id] = user
+
+    addCurrentMembers elements, idsMap
 
     elements.bind 'keydown', (event) ->
       if (event.keyCode is $.ui.keyCode.TAB && $(this).autocomplete('instance').menu.active)
