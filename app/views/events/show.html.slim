@@ -37,6 +37,13 @@ h2 #{@event.title}
 
 .panel.panel-default
   .panel-heading
+    => t('view.event.members')
+    | (#{@event.members.length})
+  .panel-body#attendees
+    = render partial: '/users/user', collection: @event.members, spacer_template: 'user_separator'
+
+.panel.panel-default
+  .panel-heading
     => t('view.event.attendees')
     | (#{@event.attendees.length})
   .panel-body#attendees

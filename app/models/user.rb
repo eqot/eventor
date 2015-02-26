@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
   has_many :created_events, class_name: 'Event', foreign_key: :owner_id
   has_many :tickets
   has_many :registered_events, through: :tickets, source: :event
+
+  belongs_to :target_event
 end

@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
   enum visibility: { everyone: 10, members_only: 20 }
+  has_many :members, source: :user
   serialize :members
+  # before_save :interpret_members
 
   has_many :tickets
   has_many :attendees, through: :tickets, source: :user
@@ -31,5 +33,23 @@ class Event < ActiveRecord::Base
 
   def include?(user)
     owner == user || self.attend?(user)
+  end
+
+  private
+
+  def interpret_members
+    ids = self.members.split(',')
+
+    self.members = []
+    ids.each do |id|
+      user = User.find(id.to_i)
+      if user.present?
+        self.members.push(user)
+      end
+    end
+
+    puts 'start'
+    puts self.members
+    puts 'end'
   end
 end
