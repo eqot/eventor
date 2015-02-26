@@ -4,3 +4,4 @@ require 'events.schema'
 require 'event_invitations.schema'
 
 require 'tickets.schema'
+require 'targets.schema'

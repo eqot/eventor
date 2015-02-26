@@ -1,9 +1,13 @@
 class Event < ActiveRecord::Base
+  before_save :convert_member_ids_to_invited_members
+
   enum visibility: { everyone: 10, members_only: 20 }
-  serialize :members
 
   has_many :tickets
   has_many :attendees, through: :tickets, source: :user
+
+  has_many :targets
+  has_many :invited_members, through: :targets, source: :user
 
   has_one :invitation, class_name: EventInvitation
   accepts_nested_attributes_for :invitation, allow_destroy: true
@@ -31,5 +35,14 @@ class Event < ActiveRecord::Base
 
   def include?(user)
     owner == user || self.attend?(user)
+  end
+
+  private
+
+  def convert_member_ids_to_invited_members
+    ids = self.members.split(',')
+    ids.each do |id|
+      targets.find_or_create_by!(user_id: id)
+    end
   end
 end
