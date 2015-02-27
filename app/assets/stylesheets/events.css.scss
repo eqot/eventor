@@ -100,3 +100,22 @@ a.event-edit {
     }
   }
 }
+
+
+.panel-heading {
+  .btn {
+    margin-top: -7px;
+  }
+}
+
+.panel-event {
+  line-height: 200%;
+
+  .description {
+    line-height: 140%;
+  }
+}
+
+.description p {
+  margin-bottom: 0;
+}

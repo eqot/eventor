@@ -4,9 +4,10 @@ ja:
       create_event: 'イベント作成'
       edit_event: 'イベント変更'
 
+      detail: '詳細'
       organizer: '主催者'
       title: 'タイトル'
-      description: '説明文'
+      description: '説明'
       date_time: '日時'
       location: '場所'
       image_url: '画像 URL'
