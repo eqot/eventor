@@ -42,7 +42,7 @@ def make_events
 
       event = Event.create!(
         title: Faker::Lorem.sentence,
-        description: Faker::Lorem.paragraph,
+        description: Faker::Lorem.paragraph(10),
         owner_id: user.id
       )
 
@@ -58,7 +58,7 @@ end
 
 def register_events
   User.all[0..3].each do |user|
-    Event.all[26..39].each do |event|
+    Event.all[6..29].each do |event|
       event.attend!(user)
     end
   end

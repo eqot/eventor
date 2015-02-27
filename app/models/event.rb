@@ -43,6 +43,8 @@ class Event < ActiveRecord::Base
   end
 
   def convert_member_ids_to_invited_members
+    return unless self.members.present?
+
     old_ids = self.invited_members.map(&:id)
     new_ids = self.members.split(',').map {|item| item.to_i}
 
