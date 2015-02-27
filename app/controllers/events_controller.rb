@@ -50,6 +50,7 @@ class EventsController < ApplicationController
 
   def edit
     @event = current_user.created_events.find(params[:id])
+    @event.convert_invited_members_to_member_ids
   end
 
   def update
