@@ -73,8 +73,6 @@ a.event-edit {
 }
 
 .button-group {
-  margin-right: -6px;
-
   a.btn, input.btn {
     margin-right: 6px;
   }
@@ -112,6 +110,7 @@ a.event-edit {
   line-height: 200%;
 
   .description {
+    margin-top: 6px;
     line-height: 140%;
   }
 }

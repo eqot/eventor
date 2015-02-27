@@ -1,13 +1,6 @@
 .row
   .col-lg-12
-    .pull-right
-      - if @event.owner?(current_user)
-        .button-group
-          = link_to t('view.event.edit'), edit_event_path(@event), class: 'btn btn-info'
-          = link_to t('view.event.delete'), event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'}
-
-    .clearfix
-      h2 #{@event.title}
+    h2 #{@event.title}
 
 .row
   .col-lg-8
@@ -72,3 +65,10 @@
               = link_to t('view.event.cancel'), event_ticket_path(@event, @ticket), class: 'btn btn-danger', method: :delete
       .panel-body.panel-event
         = render partial: '/users/user', collection: @event.attendees, spacer_template: 'lf_separator'
+
+- if @event.owner?(current_user)
+  .row
+    .col-lg-12
+      .button-group
+        = link_to t('view.event.edit'), edit_event_path(@event), class: 'btn btn-info'
+        = link_to t('view.event.delete'), event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'}
