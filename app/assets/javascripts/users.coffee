@@ -1,15 +1,13 @@
 
 attachedItems = []
 itemsMap = {}
+idsMap = {}
 
 splitString = (val) ->
   val.split(/,\s*/)
 
 extractLast = (term) ->
   splitString(term).pop()
-
-updateField = ->
-  $('#event_members').val attachedItems.join(',')
 
 addItem = (item) ->
   return unless item
@@ -37,8 +35,8 @@ createItemElement = (item, callback) ->
   return itemElement
 
 removeItem = (itemElement) ->
-  item = itemElement.val()
-  index = attachedItems.indexOf item
+  item = itemsMap[itemElement.val()]
+  index = attachedItems.indexOf item.id
   if index isnt -1
     attachedItems.splice index, 1
 
@@ -46,11 +44,9 @@ removeItem = (itemElement) ->
 
   updateField()
 
-injectItem = (elements, item) ->
-  # item ||= elements.val()
-  addItem item
-
-  elements.val ''
+updateField = ->
+  $('#event_members').val attachedItems.join(',')
+  $('.autocomplete.autocomplete-users').val('')
 
 customizeAutocompleteFilter = ->
   $.ui.autocomplete.filter = (array, term) ->
@@ -61,7 +57,7 @@ customizeAutocompleteFilter = ->
 addCurrentMembers = (elements, map) ->
   ids = $('#event_members').val().split(',')
   for id in ids
-    injectItem elements, map[id]
+    addItem map[id]
 
 enableAutoComplete = ->
   elements = $('.autocomplete.autocomplete-users')
@@ -116,7 +112,7 @@ enableAutoComplete = ->
         return false
 
       select: (event, ui) ->
-        injectItem elements, itemsMap[ui.item.value]
+        addItem itemsMap[ui.item.value]
 
         return false
 

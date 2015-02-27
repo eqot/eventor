@@ -1,60 +1,72 @@
-h2 #{@event.title}
+.row
+  .pull-right
+    - if @event.owner?(current_user)
+      .button-group
+        = link_to t('view.event.edit'), edit_event_path(@event), class: 'btn btn-info'
+        = link_to t('view.event.delete'), event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'}
 
-- if @event.image_file.present?
-  .attached-image
-    = image_tag(@event.image_file)
-- elsif @event.image_url.present?
-  .attached-image
-    = image_tag(@event.image_url)
+  h2 #{@event.title}
 
-.panel.panel-default
-  .panel-heading
-    = t('view.event.organizer')
-  .panel-body
-    = @event.owner_name
+.row
+  .col-lg-8
+    - if @event.image_file.present? || @event.image_url.present?
+      .attached-image
+        = image_tag(@event.image_file || @event.image_url)
 
-.panel.panel-default
-  .panel-heading
-    = t('view.event.description')
-  .panel-body
-    - if @event.description?
-      = Markdown.html @event.description
+    .panel.panel-default
+      .panel-heading
+        = t('view.event.detail')
+      .panel-body.panel-event
+        .row
+          .col-lg-2
+            .pull-right
+              = t('view.event.organizer')
+          .col-lg-10
+            = @event.owner_name
 
-.panel.panel-default
-  .panel-heading
-    = t('view.event.date_time')
-  .panel-body
-    span.time-slot
-      => I18n.l(@event.invitation.start_time.to_time)
-      | -
-      =< I18n.l(@event.invitation.end_time.to_time, format: :short)
+        .row
+          .col-lg-2
+            .pull-right
+              = t('view.event.date_time')
+          .col-lg-10
+            => I18n.l(@event.invitation.start_time.to_time)
+            | -
+            =< I18n.l(@event.invitation.end_time.to_time, format: :short)
 
-.panel.panel-default
-  .panel-heading
-    = t('view.event.location')
-  .panel-body
-    = @event.invitation.location
+        .row
+          .col-lg-2
+            .pull-right
+              = t('view.event.location')
+          .col-lg-10
+            = @event.invitation.location
 
-.panel.panel-default
-  .panel-heading
-    => t('view.event.attendees')
-    | (#{@event.attendees.length})
-  .panel-body#attendees
-    = render partial: '/users/user', collection: @event.attendees, spacer_template: 'user_separator'
+        - if @event.members_only?
+          .row
+            .col-lg-2
+              .pull-right
+                => t('view.event.members_only')
+            .col-lg-10
+              = render partial: '/users/user', collection: @event.invited_members, spacer_template: 'comma_separator'
 
-.panel.panel-default
-  .panel-heading
-    => t('view.event.invited_members')
-    | (#{@event.invited_members.length})
-  .panel-body#attendees
-    = render partial: '/users/user', collection: @event.invited_members, spacer_template: 'user_separator'
+        - if @event.description?
+          .row.description
+            .col-lg-2
+              .pull-right
+                = t('view.event.description')
+            .col-lg-10
+              = Markdown.html @event.description
 
-.button-group
-  - if @event.owner?(current_user)
-    = link_to t('view.event.edit'), edit_event_path(@event), class: 'btn btn-info'
-    = link_to t('view.event.delete'), event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'}
-  - else
-    - if not @event.attend?(current_user)
-      = link_to t('view.event.attend'), event_tickets_path(@event, @ticket), class: 'btn btn-info', method: :post
-    - else
-      = link_to t('view.event.cancel'), event_ticket_path(@event, @ticket), class: 'btn btn-danger', method: :delete
+  .col-lg-4
+    .panel.panel-default
+      .panel-heading
+        => t('view.event.attendees')
+        | (#{@event.attendees.length})
+
+        - if not @event.owner?(current_user)
+          .pull-right
+            - if not @event.attend?(current_user)
+              = link_to t('view.event.attend'), event_tickets_path(@event, @ticket), class: 'btn btn-info', method: :post
+            - else
+              = link_to t('view.event.cancel'), event_ticket_path(@event, @ticket), class: 'btn btn-danger', method: :delete
+      .panel-body.panel-event
+        = render partial: '/users/user', collection: @event.attendees, spacer_template: 'lf_separator'

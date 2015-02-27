@@ -8,6 +8,7 @@ class Event < ActiveRecord::Base
 
   has_many :targets
   has_many :invited_members, through: :targets, source: :user
+  attr_accessor :members
 
   has_one :invitation, class_name: EventInvitation
   accepts_nested_attributes_for :invitation, allow_destroy: true
@@ -37,12 +38,33 @@ class Event < ActiveRecord::Base
     owner == user || self.attend?(user)
   end
 
-  private
+  def convert_invited_members_to_member_ids
+    self.members = self.invited_members.map(&:id).join(',')
+  end
 
   def convert_member_ids_to_invited_members
-    ids = self.members.split(',')
-    ids.each do |id|
+    old_ids = self.invited_members.map(&:id)
+    new_ids = self.members.split(',').map {|item| item.to_i}
+
+    added_ids = []
+    new_ids.each do |id|
+      if old_ids.index(id).nil?
+        added_ids.push id
+      end
+    end
+    added_ids.each do |id|
       targets.find_or_create_by!(user_id: id)
+    end
+
+    removed_ids = []
+    old_ids.each do |id|
+      if new_ids.index(id).nil?
+        removed_ids.push id
+      end
+    end
+    removed_ids.each do |id|
+      target = targets.find_by!(user_id: id)
+      target.destroy!
     end
   end
 end
