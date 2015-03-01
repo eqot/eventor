@@ -6,6 +6,11 @@ $(document).on "ready page:load", ->
   enableMarkdownPreview()
   changeVisibilityMembersTextBox()
 
+  updateDateTime()
+
+  $('#event_invitation_attributes_start_time').on 'update', ->
+    updateDateTime()
+
 enableMarkdownPreview = ->
   $('a[href=#preview]').on 'shown.bs.tab', ->
     data = {
@@ -21,3 +26,16 @@ changeVisibilityMembersTextBox = ->
       $('#members_form').removeClass('hidden')
     else
       $('#members_form').addClass('hidden')
+
+updateDateTime = ->
+  update = (inElement, outElement)->
+    m = moment($(inElement).val())
+
+    value = "#{m.format('HH:mm')}"
+    if not $(outElement).hasClass('time-only')
+      value = "#{m.format('L')} (#{m.format('ddd')}) " + value
+
+    $(outElement).text(value)
+
+  update('#event_invitation_attributes_start_time', '#start_time')
+  update('#event_invitation_attributes_end_time', '#end_time')

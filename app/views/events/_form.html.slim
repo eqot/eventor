@@ -39,9 +39,9 @@
                   = t('view.event.date_time')
               .col-lg-10
                 - if @event.invitation.start_time.present?
-                  => I18n.l(@event.invitation.start_time.to_time)
+                  span#start_time.datetime>
                   | -
-                  =< I18n.l(@event.invitation.end_time.to_time, format: :short)
+                  span#end_time.datetime.time-only<
 
                 .hidden
                   = f_invitation.text_field :start_time
