@@ -12,6 +12,9 @@ ja:
     sign_out: 'サインアウト'
     my_page: 'マイページ'
 
+    ok: '決定'
+    cancel: 'キャンセル'
+
   time:
     formats:
       default: ! '%Y/%m/%d (%a) %H:%M'

@@ -6,65 +6,103 @@
           li #{msg}
 
   .form-group
-    = f.text_field :title, class: 'form-control', placeholder: t('view.event.title')
+    = f.text_field :title, class: 'form-control input-lg event-title', placeholder: t('view.event.title')
 
-  .form-group
-    .panel.panel-default
-      .panel-body
-        ul.nav.nav-tabs role="tablist"
-          li.active
-            a href="#write" role="tab" data-toggle="tab"
-              = t('view.event.text')
-          li
-            a href="#preview" role="tab" data-toggle="tab"
-              = t('view.event.preview')
-        .tab-content
-          .tab-pane.fade.in.active#write
-            = f.text_area :description, class: 'form-control', rows: 10, placeholder: t('view.event.description')
-          .tab-pane.fade#preview
-            #markdown
+  .row
+    .col-lg-8
+      .form-group
+        - if event.image_file.present?
+          = image_tag(event.image_file, class: "img-responsive")
+          =< f.check_box :remove_image_file
+          | Remove this image
+        = f.file_field :image_file
+        = f.hidden_field :image_file_cache
 
-  .form-group
-    .panel.panel-default
-      .panel-body
-        #calendar.calendar-edit
+      .form-group
+        = f.text_field :image_url, class: 'form-control', placeholder: t('view.event.image_url')
 
-  = f.fields_for :invitation do |f_invitation|
-    .form-group.sr-only
-      = f_invitation.text_field :start_time
+      .panel.panel-default
+        .panel-heading
+          = t('view.event.detail')
+        .panel-body.panel-event
+          .row
+            .col-lg-2
+              .pull-right
+                = t('view.event.organizer')
+            .col-lg-10
+              = current_user.name
 
-    .form-group.sr-only
-      = f_invitation.text_field :end_time
+          = f.fields_for :invitation do |f_invitation|
+            .row
+              .col-lg-2
+                .pull-right
+                  = t('view.event.date_time')
+              .col-lg-10
+                - if @event.invitation.start_time.present?
+                  => I18n.l(@event.invitation.start_time.to_time)
+                  | -
+                  =< I18n.l(@event.invitation.end_time.to_time, format: :short)
 
-    .form-group
-      = f_invitation.text_field :location, class: 'form-control', placeholder: t('view.event.location')
+                .hidden
+                  = f_invitation.text_field :start_time
+                  = f_invitation.text_field :end_time
+
+                button#editDateButton.btn.btn-default.btn-sm type="button" data-toggle="modal"
+                  .glyphicon.glyphicon-calendar aria-hidden="true"
+                    = t('view.event.edit')
+
+                #editDateModal.modal.fade tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+                  .modal-dialog.modal-lg
+                    .modal-content
+                      .modal-body
+                        #calendarModal.calendar-edit
+
+                      .modal-footer
+                        button.btn.btn-default type="button" data-dismiss="modal"
+                          = t('view.cancel')
+                        button#setDateButton.btn.btn-primary type="button"
+                          = t('view.ok')
+
+            .row
+              .col-lg-2
+                .pull-right
+                  = t('view.event.location')
+              .col-lg-10
+                = f_invitation.text_field :location, class: 'form-control'
+
+          .row
+            .col-lg-2
+              .pull-right
+                = t('view.event.members_only')
+            .col-lg-10
+              = f.check_box :visibility, {}, "members_only", "everyone"
+              = f.text_field :members, class: 'form-control hidden'
+
+              #members_form
+                input class="form-control autocomplete autocomplete-users" placeholder="#{t('view.event.invited_members')}"
+                #members
+
+          .row
+            .col-lg-2
+              .pull-right
+                = t('view.event.description')
+            .col-lg-10
+              .form-group
+                ul.nav.nav-tabs role="tablist"
+                  li.active
+                    a href="#write" role="tab" data-toggle="tab"
+                      = t('view.event.text')
+                  li
+                    a href="#preview" role="tab" data-toggle="tab"
+                      = t('view.event.preview')
+                .tab-content
+                  .tab-pane.fade.in.active#write
+                    = f.text_area :description, class: 'form-control', rows: 10
+                  .tab-pane.fade#preview
+                    #markdown
 
   .form-group.sr-only
     = f.text_field :id
-
-  .form-group
-    = f.text_field :image_url, class: 'form-control', placeholder: t('view.event.image_url')
-
-  .form-group
-    - if event.image_file.present?
-      .attached-image
-        img src="#{event.image_file}"
-        =< f.check_box :remove_image_file
-        | Remove this image
-    = f.file_field :image_file
-    = f.hidden_field :image_file_cache
-
-  .form-group
-    .checkbox
-      label
-        = f.check_box :visibility, {}, "members_only", "everyone"
-        = t('view.event.members_only')
-
-    = f.text_field :members, class: 'form-control hidden'
-
-    #members_form
-      #members
-      input class="form-control autocomplete autocomplete-users" placeholder="#{t('view.event.invited_members')}"
 
   .button-group
     = f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }
