@@ -104,6 +104,11 @@ a.event-edit {
 .panel-event {
   line-height: 200%;
 
+  input, button {
+    line-height: 100%;
+    margin-bottom: 6px;
+  }
+
   .description {
     margin-top: 6px;
     line-height: 140%;
@@ -120,6 +125,10 @@ a.event-edit {
   font-weight: 500;
   padding-left: 8px;
   padding-right: 8px;
+}
+
+#editDateButton {
+  margin-left: 6px;
 }
 
 #calendar {

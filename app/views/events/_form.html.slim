@@ -99,7 +99,8 @@
                   .tab-pane.fade.in.active#write
                     = f.text_area :description, class: 'form-control', rows: 10
                   .tab-pane.fade#preview
-                    #markdown
+                    .description
+                      #markdown
 
   .form-group.sr-only
     = f.text_field :id
