@@ -18,9 +18,9 @@
 
       div
         span.time-slot
-          => I18n.l(event.invitation.start_time.to_time)
+          span#start_time.datetime> data-date="#{event.invitation.start_time.to_time}"
           | -
-          =< I18n.l(event.invitation.end_time.to_time, format: :short)
+          span#end_time.datetime.time-only< data-date="#{event.invitation.end_time.to_time}"
 
         span.location
           | , @

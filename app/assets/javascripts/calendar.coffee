@@ -16,6 +16,8 @@ $(document).on "ready page:load", ->
         $('#event_invitation_attributes_start_time').val startDate.format()
         $('#event_invitation_attributes_end_time').val endDate.format()
 
+        $('#event_invitation_attributes_start_time').trigger('update')
+
       $('#editDateModal').modal('hide')
 
 activateCalendar = (selector) ->
