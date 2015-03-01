@@ -1,7 +1,25 @@
 renderedEvent = null
+startDate = null
+endDate = null
 
 $(document).on "ready page:load", ->
-  element = $('#calendar')
+  activateCalendar('#calendar')
+
+  $('#editDateButton').click ->
+    $('#editDateModal').on 'shown.bs.modal', ->
+      activateCalendar('#calendarModal')
+
+    $('#editDateModal').modal('show')
+
+    $('#setDateButton').click ->
+      if startDate && endDate
+        $('#event_invitation_attributes_start_time').val startDate.format()
+        $('#event_invitation_attributes_end_time').val endDate.format()
+
+      $('#editDateModal').modal('hide')
+
+activateCalendar = (selector) ->
+  element = $(selector)
   return unless element[0]?
 
   initFullCalendar element
@@ -80,5 +98,5 @@ addEvent = (element, start, end) ->
   renderedEvent = element.fullCalendar 'renderEvent', eventData, true
 
 updateEvent = (start, end) ->
-  $('#event_invitation_attributes_start_time').val start.format()
-  $('#event_invitation_attributes_end_time').val end.format()
+  startDate = start
+  endDate = end
