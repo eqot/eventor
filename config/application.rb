@@ -45,6 +45,6 @@ module RailsBase42
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
 
-    config.version = '1.4.0'
+    config.version = '1.5.0'
   end
 end
