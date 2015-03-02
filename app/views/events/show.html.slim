@@ -6,6 +6,7 @@
   .col-lg-8
     - if @event.image_file.present? || @event.image_url.present?
       = image_tag(@event.image_file || @event.image_url, class: "img-responsive")
+      .image-spacer
 
     .panel.panel-default
       .panel-heading
