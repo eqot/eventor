@@ -41,7 +41,7 @@
               .pull-right
                 => t('view.event.members_only')
             .col-lg-10
-              = render partial: '/users/user', collection: @event.invited_members, spacer_template: 'comma_separator'
+              = render partial: '/users/user', collection: @event.invitees, spacer_template: 'comma_separator'
 
         - if @event.description?
           .row.description
