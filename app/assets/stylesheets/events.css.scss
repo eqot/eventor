@@ -134,3 +134,15 @@ a.event-edit {
 #calendar {
   height: 100%;
 }
+
+.event-image-area {
+  position: relative;
+}
+
+.checkbox-remove-image {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  font-size: 14px;
+}

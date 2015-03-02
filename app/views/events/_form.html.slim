@@ -10,16 +10,23 @@
 
   .row
     .col-lg-8
-      .form-group
-        - if event.image_file.present?
-          = image_tag(event.image_file, class: "img-responsive")
-          =< f.check_box :remove_image_file
-          | Remove this image
-        = f.file_field :image_file
-        = f.hidden_field :image_file_cache
+      .panel.panel-default
+        .panel-heading
+          = t('view.event.image')
+        .panel-body
+          .form-group
+            - if event.image_file.present?
+              .event-image-area
+                = image_tag(event.image_file, class: "img-responsive")
+                .label.label-warning.checkbox-remove-image
+                  =< f.check_box :remove_image_file
+                  span.glyphicon.glyphicon-trash<>
+                  = t('view.event.delete')
+            = f.file_field :image_file
+            = f.hidden_field :image_file_cache
 
-      .form-group
-        = f.text_field :image_url, class: 'form-control', placeholder: t('view.event.image_url')
+          .form-group
+            = f.text_field :image_url, class: 'form-control', placeholder: t('view.event.image_url')
 
       .panel.panel-default
         .panel-heading
