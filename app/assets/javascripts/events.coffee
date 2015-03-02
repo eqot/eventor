@@ -4,7 +4,10 @@
 
 $(document).on "ready page:load", ->
   enableMarkdownPreview()
-  changeVisibilityMembersTextBox()
+
+  updateVisibilityMembersTextBox()
+  $('input[id=event_visibility]').change ->
+    updateVisibilityMembersTextBox()
 
   showDateTime()
 
@@ -21,12 +24,14 @@ enableMarkdownPreview = ->
     $.post('/api/v1/markdown', data).done (html) ->
       $('#markdown').html html
 
-changeVisibilityMembersTextBox = ->
-  $('input[id=event_visibility]').change ->
-    if this.checked
-      $('#members_form').removeClass('hidden')
-    else
-      $('#members_form').addClass('hidden')
+updateVisibilityMembersTextBox = ->
+  element = $('input[id=event_visibility]')[0]
+  return unless element?
+
+  if element.checked
+    $('#members_form').removeClass('hidden')
+  else
+    $('#members_form').addClass('hidden')
 
 update = (inElement, outElement) ->
   return unless $(inElement).length > 0

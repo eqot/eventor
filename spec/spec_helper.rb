@@ -83,6 +83,7 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 
-  # Include FactoryGirl Syntax
-  config.include FactoryGirl::Syntax::Methods
+  RSpec.configure do |config|
+    config.include FactoryGirl::Syntax::Methods
+  end
 end

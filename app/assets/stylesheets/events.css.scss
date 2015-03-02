@@ -78,6 +78,10 @@ a.event-edit {
   }
 }
 
+.image-spacer {
+  height: 14px;
+}
+
 #members {
   margin-bottom: 8px;
 
@@ -96,13 +100,17 @@ a.event-edit {
   }
 }
 
-
 .panel-heading .btn {
   margin-top: -7px;
 }
 
 .panel-event {
   line-height: 200%;
+
+  input, button {
+    line-height: 100%;
+    margin-bottom: 6px;
+  }
 
   .description {
     margin-top: 6px;
@@ -122,6 +130,22 @@ a.event-edit {
   padding-right: 8px;
 }
 
+#editDateButton {
+  margin-left: 6px;
+}
+
 #calendar {
   height: 100%;
+}
+
+.event-image-area {
+  position: relative;
+}
+
+.checkbox-remove-image {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  font-size: 14px;
 }
