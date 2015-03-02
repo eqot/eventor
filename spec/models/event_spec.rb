@@ -15,7 +15,17 @@ describe Event do
   end
 
   it "is invalid without a title" do
-    event = build(:invalid_event)
+    event = build(:event, title: nil)
     expect(event).to have(1).errors_on(:title)
+  end
+
+  it "should have 4 attendees" do
+    event = create(:event)
+    expect(event.attendees).to have(4).items
+  end
+
+  it "should have 4 invitees" do
+    event = create(:event)
+    expect(event.invited_members).to have(4).items
   end
 end
