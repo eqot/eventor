@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 describe 'Static pages' do
   describe 'Top page' do
     it "should have the content 'Eventor'" do
