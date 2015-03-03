@@ -76,9 +76,8 @@ initFullCalendar = (element) ->
 loadEvents = (element) ->
   $.get('/events.json?t=all').done (events) ->
     id = parseInt $('#event_id').val()
-    if not isNaN(id)
-      events = events.filter (event) ->
-        return event.id isnt id
+    events = events.filter (event) ->
+      return (event.id isnt id) && event.start && event.end
 
     element.fullCalendar 'addEventSource', events
 
