@@ -1,30 +1,39 @@
 = link_to event, class: "list-group-item list-item"
-  p.pull-left.list-left
-    span.number
-      span class=(event.include?(current_user) ? 'event-attend' : '')
-        = event.attendees.length
-      br
-    span.unit
-      = t('view.event.unit')
+  .row
+    .col-lg-1.no-padding-right
+      - if event.image_file.present? || event.image_url.present?
+        = image_tag(event.image_file_url || event.image_url, class: "img-responsive center-block")
 
-  div
-    h4.list-group-item-heading
-      = event.title
+    .col-lg-10
+      h4.list-group-item-heading
+        = event.title
 
-    .list-group-item-text.clearfix
-      p.ellipsis
-        - if event.description?
-          = Markdown.text event.description
+      .list-group-item-text.clearfix
+        p.ellipsis
+          - if event.description?
+            = Markdown.text event.description
+          - else
+            br
 
-      div
-        span.time-slot
-          span#start_time.datetime> data-date="#{event.invitation.start_time.to_time}"
-          | -
-          span#end_time.datetime.time-only< data-date="#{event.invitation.end_time.to_time}"
+        div
+          span.time-slot
+            span#start_time.datetime> data-date="#{event.invitation.start_time.to_time}"
+            | -
+            span#end_time.datetime.time-only< data-date="#{event.invitation.end_time.to_time}"
 
-        span.location
-          | , @
-          = event.invitation.location
+          - if event.invitation.location.present?
+            span.location
+              | , @
+              = event.invitation.location
 
-        .pull-right
-          = event.owner_name
+          .pull-right
+            = event.owner_name
+
+    .col-lg-1
+      #eventAttendees
+        span.number
+          span class=(event.include?(current_user) ? 'event-attend' : '')
+            = event.attendees.length
+          br
+        span.unit
+          = t('view.event.unit')

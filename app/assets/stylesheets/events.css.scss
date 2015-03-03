@@ -28,6 +28,10 @@ $event-edit-color: #e42821;
   text-align: center;
 }
 
+.no-padding-right {
+  padding-right: 0;
+}
+
 a.list-group-item {
   padding: 10px 15px 4px 15px;
 }
@@ -55,7 +59,7 @@ a.event-edit {
   border-color: $event-edit-color;
 }
 
-.list-left {
+#eventAttendees {
   text-align: center;
   margin-right: 1em;
 
@@ -130,8 +134,8 @@ a.event-edit {
   padding-right: 8px;
 }
 
-#editDateButton {
-  margin-left: 6px;
+#eventFormDateTime {
+  margin-right: 6px;
 }
 
 #calendar {

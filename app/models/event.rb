@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  before_save :convert_member_ids_to_invited_members
+  before_save :convert_member_ids_to_invitees
 
   enum visibility: { everyone: 10, members_only: 20 }
 
@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
   has_many :attendees, through: :tickets, source: :user
 
   has_many :targets
-  has_many :invited_members, through: :targets, source: :user
+  has_many :invitees, through: :targets, source: :user
   attr_accessor :members
 
   has_one :invitation, class_name: EventInvitation
@@ -38,14 +38,14 @@ class Event < ActiveRecord::Base
     owner == user || self.attend?(user)
   end
 
-  def convert_invited_members_to_member_ids
-    self.members = self.invited_members.map(&:id).join(',')
+  def convert_invitees_to_member_ids
+    self.members = self.invitees.map(&:id).join(',')
   end
 
-  def convert_member_ids_to_invited_members
+  def convert_member_ids_to_invitees
     return unless self.members.present?
 
-    old_ids = self.invited_members.map(&:id)
+    old_ids = self.invitees.map(&:id)
     new_ids = self.members.split(',').map {|item| item.to_i}
 
     added_ids = []

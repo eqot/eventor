@@ -9,6 +9,8 @@ describe Event do
   it { should respond_to(:visibility) }
   it { should respond_to(:owner_id) }
 
+  it { should respond_to(:invitees) }
+
   it "is valid with a title" do
     event = build(:event)
     expect(event).to be_valid
@@ -26,6 +28,6 @@ describe Event do
 
   it "should have 4 invitees" do
     event = create(:event)
-    expect(event.invited_members).to have(4).items
+    expect(event.invitees).to have(4).items
   end
 end

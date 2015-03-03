@@ -13,8 +13,8 @@ ja:
       image: '画像'
       image_url: '画像 URL'
       attendees: '参加者'
-      members_only: 'メンバー限定'
-      invited_members: 'メンバー'
+      members_only: '招待者限定'
+      invitees: '招待者'
 
       text: 'テキスト'
       preview: 'プレビュー'
@@ -30,3 +30,5 @@ ja:
 
       coming_events: '今後のイベントを見る'
       passed_events: '過去のイベントを見る'
+
+      tbd: '未定'
