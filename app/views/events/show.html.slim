@@ -5,7 +5,7 @@
 .row
   .col-lg-8
     - if @event.image_file.present? || @event.image_url.present?
-      = image_tag(@event.image_file || @event.image_url, class: "img-responsive")
+      = image_tag(@event.image_file_url || @event.image_url, class: "img-responsive center-block")
       .image-spacer
 
     .panel.panel-default

@@ -15,6 +15,8 @@
       p.ellipsis
         - if event.description?
           = Markdown.text event.description
+        - else
+          br
 
       div
         span.time-slot
@@ -22,9 +24,10 @@
           | -
           span#end_time.datetime.time-only< data-date="#{event.invitation.end_time.to_time}"
 
-        span.location
-          | , @
-          = event.invitation.location
+        - if event.invitation.location.present?
+          span.location
+            | , @
+            = event.invitation.location
 
         .pull-right
           = event.owner_name
