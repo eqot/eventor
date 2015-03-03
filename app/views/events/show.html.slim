@@ -24,16 +24,23 @@
             .pull-right
               = t('view.event.date_time')
           .col-lg-10
-            => I18n.l(@event.invitation.start_time.to_time)
-            | -
-            =< I18n.l(@event.invitation.end_time.to_time, format: :short)
+            - if @event.invitation.start_time.present? && @event.invitation.end_time.present?
+              => I18n.l(@event.invitation.start_time.to_time)
+              | -
+              =< I18n.l(@event.invitation.end_time.to_time, format: :short)
+            - else
+              = "(#{t('view.event.tbd')})"
 
         .row
           .col-lg-2
             .pull-right
               = t('view.event.location')
           .col-lg-10
-            = @event.invitation.location
+            - if @event.invitation.location.present?
+              = @event.invitation.location
+            - else
+              = "(#{t('view.event.tbd')})"
+
 
         - if @event.members_only?
           .row
