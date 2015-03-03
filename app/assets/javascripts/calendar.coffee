@@ -1,3 +1,4 @@
+isActivated = false
 renderedEvent = null
 startDate = null
 endDate = null
@@ -11,21 +12,25 @@ $(document).on "ready page:load", ->
 
     $('#editDateModal').modal('show')
 
-    $('#setDateButton').click ->
-      if startDate && endDate
-        $('#event_invitation_attributes_start_time').val startDate.format()
-        $('#event_invitation_attributes_end_time').val endDate.format()
+  $('#setDateButton').click ->
+    if startDate && endDate
+      $('#event_invitation_attributes_start_time').val startDate.format()
+      $('#event_invitation_attributes_end_time').val endDate.format()
 
-        $('#event_invitation_attributes_start_time').trigger('update')
+      $('#event_invitation_attributes_start_time').trigger('update')
 
-      $('#editDateModal').modal('hide')
+    $('#editDateModal').modal('hide')
 
 activateCalendar = (selector) ->
+  return if isActivated
+
   element = $(selector)
   return unless element[0]?
 
   initFullCalendar element
   loadEvents element
+
+  isActivated = true
 
 initFullCalendar = (element) ->
   config =
