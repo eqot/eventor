@@ -45,7 +45,7 @@
                 .pull-right
                   = t('view.event.date_time')
               .col-lg-10
-                - if @event.invitation.start_time.present?
+                span#eventFormDateTime.hidden
                   span#start_time.datetime>
                   | -
                   span#end_time.datetime.time-only<
