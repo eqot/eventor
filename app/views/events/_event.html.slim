@@ -33,7 +33,7 @@
       #eventAttendees
         span.number
           span class=(event.include?(current_user) ? 'event-attend' : '')
-            = event.attendees.length
+            = event.attendees.count
           br
         span.unit
           = t('view.event.unit')

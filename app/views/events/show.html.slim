@@ -62,7 +62,7 @@
     .panel.panel-default
       .panel-heading
         => t('view.event.attendees')
-        | (#{@event.attendees.length})
+        | (#{@event.attendees.count})
 
         - if not @event.owner?(current_user)
           .pull-right
