@@ -1,9 +1,11 @@
-isActivated = false
+isActivated = null
 renderedEvent = null
 startDate = null
 endDate = null
 
 $(document).on "ready page:load", ->
+  isActivated = false
+
   activateCalendar('#calendar')
 
   $('#editDateButton').click ->

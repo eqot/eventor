@@ -20,6 +20,28 @@ class Event < ActiveRecord::Base
 
   validates :title, presence: true
 
+  default_scope -> {
+    includes(:owner, :targets, :invitees, :attendees, :invitation)
+    .order('event_invitations.start_time')
+  }
+  scope :coming, -> {
+    where('event_invitations.start_time > ?', Time.now)
+    .order('event_invitations.start_time')
+  }
+  scope :passed, -> {
+    where('event_invitations.start_time < ?', Time.now)
+    .reorder('event_invitations.start_time desc')
+  }
+  scope :visible, ->(user) {
+    if user.present?
+      where('visibility is ? OR visibility = ? OR owner_id = ? OR targets.user_id = ?',
+        nil, Event.visibilities[:everyone], user.id, user.id)
+    else
+      where('visibility is ? OR visibility = ?',
+        nil, Event.visibilities[:everyone])
+    end
+  }
+
   def owner?(user)
     return false unless user
     owner_id == user.id
