@@ -7,11 +7,11 @@ class EventsController < ApplicationController
     @time = params[:t] || 'coming'
     case @time
     when 'all'
-      @events = Event.all
+      @events = Event.visible(current_user)
     when 'passed'
-      @events = Event.passed.page(params[:page])
+      @events = Event.visible(current_user).passed.page(params[:page])
     else # when 'coming'
-      @events = Event.coming.page(params[:page])
+      @events = Event.visible(current_user).coming.page(params[:page])
     end
 
     @view = params[:v] || 'list'
