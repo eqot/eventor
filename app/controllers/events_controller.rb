@@ -7,18 +7,11 @@ class EventsController < ApplicationController
     @time = params[:t] || 'coming'
     case @time
     when 'all'
-      @events = Event.includes(:owner, :attendees, :invitation)
-                .order('event_invitations.start_time')
+      @events = Event.all
     when 'passed'
-      @events = Event.includes(:owner, :attendees, :invitation)
-                .where('event_invitations.start_time < ?', Time.now)
-                .order('event_invitations.start_time desc')
-                .page(params[:page])
+      @events = Event.passed.page(params[:page])
     else # when 'coming'
-      @events = Event.includes(:owner, :attendees, :invitation)
-                .where('event_invitations.start_time > ?', Time.now)
-                .order('event_invitations.start_time')
-                .page(params[:page])
+      @events = Event.coming.page(params[:page])
     end
 
     @view = params[:v] || 'list'

@@ -20,6 +20,19 @@ class Event < ActiveRecord::Base
 
   validates :title, presence: true
 
+  default_scope -> {
+    includes(:owner, :attendees, :invitation)
+    .order('event_invitations.start_time')
+  }
+  scope :coming, -> {
+    where('event_invitations.start_time > ?', Time.now)
+    .order('event_invitations.start_time')
+  }
+  scope :passed, -> {
+    where('event_invitations.start_time < ?', Time.now)
+    .reorder('event_invitations.start_time desc')
+  }
+
   def owner?(user)
     return false unless user
     owner_id == user.id
