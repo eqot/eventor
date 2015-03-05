@@ -64,6 +64,10 @@ class Event < ActiveRecord::Base
     self.members = self.invitees.map(&:id).join(',')
   end
 
+  def invite!(user)
+    targets.find_or_create_by!(user_id: user.id)
+  end
+
   def convert_member_ids_to_invitees
     return unless self.members.present?
 
