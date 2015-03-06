@@ -1,9 +1,9 @@
 .row
-  .col-lg-12
+  .col-lg-12.col-md-12.col-sm-12.col-xs-12
     h2 #{@event.title}
 
 .row
-  .col-lg-8
+  .col-lg-8.col-md-8.col-sm-12.col-xs-12
     - if @event.image_file.present? || @event.image_url.present?
       = image_tag(@event.image_file_url || @event.image_url, class: "img-responsive center-block")
       .image-spacer
@@ -13,17 +13,17 @@
         = t('view.event.detail')
       .panel-body.panel-event
         .row
-          .col-lg-2
+          .col-lg-2.col-md-2.col-sm-2.col-xs-3
             .pull-right
               = t('view.event.organizer')
-          .col-lg-10
+          .col-lg-10.col-md-10.col-sm-10.col-xs-9
             = @event.owner_name
 
         .row
-          .col-lg-2
+          .col-lg-2.col-md-2.col-sm-2.col-xs-3
             .pull-right
               = t('view.event.date_time')
-          .col-lg-10
+          .col-lg-10.col-md-10.col-sm-10.col-xs-9
             - if @event.invitation.start_time.present? && @event.invitation.end_time.present?
               => I18n.l(@event.invitation.start_time.to_time)
               | -
@@ -32,10 +32,10 @@
               = "(#{t('view.event.tbd')})"
 
         .row
-          .col-lg-2
+          .col-lg-2.col-md-2.col-sm-2.col-xs-3
             .pull-right
               = t('view.event.location')
-          .col-lg-10
+          .col-lg-10.col-md-10.col-sm-10.col-xs-9
             - if @event.invitation.location.present?
               = @event.invitation.location
             - else
@@ -44,21 +44,21 @@
 
         - if @event.members_only?
           .row
-            .col-lg-2
+            .col-lg-2.col-md-2.col-sm-2.col-xs-3
               .pull-right
                 => t('view.event.members_only')
-            .col-lg-10
+            .col-lg-10.col-md-10.col-sm-10.col-xs-9
               = render partial: '/users/user', collection: @event.invitees, spacer_template: 'comma_separator'
 
         - if @event.description?
           .row.description
-            .col-lg-2
+            .col-lg-2.col-md-2.col-sm-2.col-xs-3
               .pull-right
                 = t('view.event.description')
-            .col-lg-10
+            .col-lg-10.col-md-10.col-sm-10.col-xs-9
               = Markdown.html @event.description
 
-  .col-lg-4
+  .col-lg-4.col-md-4.col-sm-12.col-xs-12
     .panel.panel-default
       .panel-heading
         => t('view.event.attendees')
@@ -75,7 +75,7 @@
 
 - if @event.owner?(current_user)
   .row
-    .col-lg-12
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
       .button-group
         = link_to t('view.event.edit'), edit_event_path(@event), class: 'btn btn-info'
         = link_to t('view.event.delete'), event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'}
