@@ -80,6 +80,13 @@
             .row
               .col-lg-2.col-md-2.col-sm-2.col-xs-3
                 .pull-right
+                  = t('view.event.max_attendees')
+              .col-lg-2.col-md-2.col-sm-2.col-xs-2
+                = f_invitation.number_field :max_attendees, class: 'form-control', min: 0
+
+            .row
+              .col-lg-2.col-md-2.col-sm-2.col-xs-3
+                .pull-right
                   = t('view.event.deadline')
               .col-lg-10.col-md-10.col-sm-10.col-xs-9
                 span#eventFormDeadline

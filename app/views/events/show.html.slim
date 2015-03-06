@@ -71,8 +71,11 @@
   .col-lg-4.col-md-4.col-sm-12.col-xs-12
     .panel.panel-default
       .panel-heading
-        => t('view.event.attendees')
-        | (#{@event.attendees.count})
+        = t('view.event.attendees')
+        span
+          = " ( #{@event.attendees.count} "
+          = "/ #{@event.invitation.max_attendees} " if @event.invitation.max_attendees.present?
+          | )
 
         - if not @event.owner?(current_user)
           .pull-right
