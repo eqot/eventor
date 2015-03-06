@@ -2,7 +2,10 @@ activatedElements = {}
 renderedEvent = null
 startDate = null
 endDate = null
-deadline = null
+
+result =
+  datetime: null
+  deadline: null
 
 $(document).on "ready page:load", ->
   activatedElements = {}
@@ -36,13 +39,14 @@ activateModalOpenButton = (element) ->
 activateModalCloseButton = (element) ->
   button = $(element)
   modal = $(button.data('modal'))
-  return unless modal?
+  output = $(button.data('output'))
+  return unless modal? && output
 
   button.click ->
     modal.modal('hide')
 
-    $('#event_invitation_attributes_deadline').val deadline.format()
-    $('#event_invitation_attributes_deadline').trigger('update')
+    output.val result[button.data('result')].format()
+    output.trigger('update')
 
 activateCalendar = (element) ->
   return unless element && element.selector
@@ -66,50 +70,56 @@ initFullCalendar = (element) ->
     lang: 'ja'
 
   if element.hasClass 'calendar-edit'
-    config.header =
-      left: 'prev,next today'
-      center: 'title'
-      right: 'agendaWeek,agendaDay'
-    config.defaultView = 'agendaWeek'
     config.contentHeight = 500
-    config.axisFormat = 'H:mm'
-    config.snapDuration = '00:30:00'
-    config.scrollTime = '8:00'
-    config.businessHours =
-      start: '8:00'
-      end: '18:00'
 
-    date = $('#event_invitation_attributes_start_time').val()
-    if date? and date.length > 0
-      config.defaultDate = date
-
+    config.selectable = true
     config.eventClick = ->
       return false
 
-    config.selectable = true
-    config.select = (start, end) ->
-      addEvent element, start, end
-      updateEvent start, end
+    if element.hasClass 'calendar-week'
+      config.header =
+        left: 'prev,next today'
+        center: 'title'
+        right: 'agendaWeek,agendaDay'
+      config.defaultView = 'agendaWeek'
 
-    config.eventDrop = (event) ->
-      updateEvent event.start, event.end
+      config.axisFormat = 'H:mm'
+      config.snapDuration = '00:30:00'
+      config.scrollTime = '8:00'
+      config.businessHours =
+        start: '8:00'
+        end: '18:00'
 
-    config.eventResize = (event) ->
-      updateEvent event.start, event.end
+      date = $('#event_invitation_attributes_start_time').val()
+      if date? and date.length > 0
+        config.defaultDate = date
 
-  if element.hasClass 'calendar-month'
-    config.defaultView = 'month'
+      config.select = (start, end) ->
+        addEvent element, start, end
+        updateEvent start, end
 
-    config.selectable = true
-    config.select = (start, end) ->
-      addEvent element, start
-      deadline = start
+      config.eventDrop = (event) ->
+        updateEvent event.start, event.end
 
-    config.eventDrop = (event) ->
-      deadline = event.start
+      config.eventResize = (event) ->
+        updateEvent event.start, event.end
 
-    config.eventResize = (event) ->
-      deadline = event.start
+    else if element.hasClass 'calendar-month'
+      config.header =
+        left: 'prev,next today'
+        center: 'title'
+        right: ''
+      config.defaultView = 'month'
+
+      config.select = (start, end) ->
+        addEvent element, start
+        result.deadline = start
+
+      config.eventDrop = (event) ->
+        result.deadline = event.start
+
+      config.eventResize = (event) ->
+        result.deadline = event.start
 
   element.fullCalendar config
 
@@ -134,6 +144,7 @@ addEvent = (element, start, end) ->
   eventData =
     start: start
     end: end
+    allDay: not end?
     editable: true
     className: 'event-edit'
   renderedEvent = element.fullCalendar 'renderEvent', eventData, true

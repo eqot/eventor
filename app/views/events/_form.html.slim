@@ -62,7 +62,7 @@
                   .modal-dialog.modal-lg
                     .modal-content
                       .modal-body
-                        .calendar.calendar-edit
+                        .calendar.calendar-edit.calendar-week
 
                       .modal-footer
                         button.btn.btn-default type="button" data-dismiss="modal"
@@ -101,7 +101,7 @@
                       .modal-footer
                         button.btn.btn-default type="button" data-dismiss="modal"
                           = t('view.cancel')
-                        button.btn-modal-close.btn.btn-primary type="button" data-modal="#editDeadlineModal"
+                        button.btn-modal-close.btn.btn-primary type="button" data-modal="#editDeadlineModal" data-result="deadline" data-output="#event_invitation_attributes_deadline"
                           = t('view.ok')
 
           .row
