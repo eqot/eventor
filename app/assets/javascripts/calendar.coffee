@@ -1,7 +1,5 @@
 activatedElements = {}
 renderedEvent = null
-startDate = null
-endDate = null
 
 result =
   datetime: null
@@ -16,9 +14,9 @@ $(document).on "ready page:load", ->
   activateModalCloseButton element for element in $('.btn-modal-close')
 
   $('#setDateTimeButton').click ->
-    if startDate && endDate
-      $('#event_invitation_attributes_start_time').val startDate.format()
-      $('#event_invitation_attributes_end_time').val endDate.format()
+    if result.datetime
+      $('#event_invitation_attributes_start_time').val result.datetime[0].format()
+      $('#event_invitation_attributes_end_time').val result.datetime[1].format()
 
       $('#event_invitation_attributes_start_time').trigger('update')
 
@@ -150,5 +148,4 @@ addEvent = (element, start, end) ->
   renderedEvent = element.fullCalendar 'renderEvent', eventData, true
 
 updateEvent = (start, end) ->
-  startDate = start
-  endDate = end
+  result.datetime = [start, end]
