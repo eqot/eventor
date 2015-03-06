@@ -10,6 +10,7 @@ ja:
       description: '説明'
       date_time: '日時'
       location: '場所'
+      deadline: '締切'
       image: '画像'
       image_url: '画像 URL'
       attendees: '参加者'

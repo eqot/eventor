@@ -54,20 +54,20 @@
                   = f_invitation.text_field :start_time
                   = f_invitation.text_field :end_time
 
-                button#editDateButton.btn.btn-default.btn-sm type="button" data-toggle="modal"
+                button.btn-modal-open.btn.btn-default.btn-sm type="button" data-modal="#editDateTimeModal"
                   .glyphicon.glyphicon-calendar aria-hidden="true"
                     = t('view.event.edit')
 
-                #editDateModal.modal.fade tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+                #editDateTimeModal.modal.fade tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
                   .modal-dialog.modal-lg
                     .modal-content
                       .modal-body
-                        #calendarModal.calendar-edit
+                        .calendar.calendar-edit
 
                       .modal-footer
                         button.btn.btn-default type="button" data-dismiss="modal"
                           = t('view.cancel')
-                        button#setDateButton.btn.btn-primary type="button"
+                        button#setDateTimeButton.btn.btn-primary type="button"
                           = t('view.ok')
 
             .row
@@ -76,6 +76,33 @@
                   = t('view.event.location')
               .col-lg-10.col-md-10.col-sm-10.col-xs-9
                 = f_invitation.text_field :location, class: 'form-control'
+
+            .row
+              .col-lg-2.col-md-2.col-sm-2.col-xs-3
+                .pull-right
+                  = t('view.event.deadline')
+              .col-lg-10.col-md-10.col-sm-10.col-xs-9
+                span#eventFormDeadline
+                  span#deadline.datetime.date-only
+
+                .hidden
+                  = f_invitation.text_field :deadline
+
+                button.btn-modal-open.btn.btn-default.btn-sm type="button" data-modal="#editDeadlineModal"
+                  .glyphicon.glyphicon-calendar aria-hidden="true"
+                    = t('view.event.edit')
+
+                #editDeadlineModal.modal.fade tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+                  .modal-dialog.modal-lg
+                    .modal-content
+                      .modal-body
+                        .calendar.calendar-edit.calendar-month
+
+                      .modal-footer
+                        button.btn.btn-default type="button" data-dismiss="modal"
+                          = t('view.cancel')
+                        button.btn-modal-close.btn.btn-primary type="button" data-modal="#editDeadlineModal"
+                          = t('view.ok')
 
           .row
             .col-lg-2.col-md-2.col-sm-2.col-xs-3

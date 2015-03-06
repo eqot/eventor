@@ -69,7 +69,7 @@ class EventsController < ApplicationController
       :title, :description,
       :image_file, :image_file_cache, :remove_image_file, :image_url,
       :visibility, :members,
-      invitation_attributes: [:start_time, :end_time, :location]
+      invitation_attributes: [:start_time, :end_time, :location, :deadline]
     )
   end
 end

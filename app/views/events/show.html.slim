@@ -42,6 +42,16 @@
               = "(#{t('view.event.tbd')})"
 
 
+        .row
+          .col-lg-2.col-md-2.col-sm-2.col-xs-3
+            .pull-right
+              = t('view.event.deadline')
+          .col-lg-10.col-md-10.col-sm-10.col-xs-9
+            - if @event.invitation.deadline.present?
+              => I18n.l(@event.invitation.deadline.to_date)
+            - else
+              = "(#{t('view.event.tbd')})"
+
         - if @event.members_only?
           .row
             .col-lg-2.col-md-2.col-sm-2.col-xs-3

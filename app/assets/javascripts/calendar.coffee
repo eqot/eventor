@@ -1,38 +1,57 @@
-isActivated = null
+activatedElements = {}
 renderedEvent = null
 startDate = null
 endDate = null
+deadline = null
 
 $(document).on "ready page:load", ->
-  isActivated = false
+  activatedElements = {}
 
-  activateCalendar('#calendar')
+  activateCalendar($('#calendar'))
 
-  $('#editDateButton').click ->
-    $('#editDateModal').on 'shown.bs.modal', ->
-      activateCalendar('#calendarModal')
+  activateModalOpenButton element for element in $('.btn-modal-open')
+  activateModalCloseButton element for element in $('.btn-modal-close')
 
-    $('#editDateModal').modal('show')
-
-  $('#setDateButton').click ->
+  $('#setDateTimeButton').click ->
     if startDate && endDate
       $('#event_invitation_attributes_start_time').val startDate.format()
       $('#event_invitation_attributes_end_time').val endDate.format()
 
       $('#event_invitation_attributes_start_time').trigger('update')
 
-    $('#editDateModal').modal('hide')
+    $('#editDateTimeModal').modal('hide')
 
-activateCalendar = (selector) ->
-  return if isActivated
+activateModalOpenButton = (element) ->
+  button = $(element)
+  modal = $(button.data('modal'))
+  return unless modal?
 
-  element = $(selector)
-  return unless element[0]?
+  button.click ->
+    modal.modal('show')
+
+  modal.on 'shown.bs.modal', ->
+    calendar = modal.find('.calendar')
+    activateCalendar(calendar)
+
+activateModalCloseButton = (element) ->
+  button = $(element)
+  modal = $(button.data('modal'))
+  return unless modal?
+
+  button.click ->
+    modal.modal('hide')
+
+    $('#event_invitation_attributes_deadline').val deadline.format()
+    $('#event_invitation_attributes_deadline').trigger('update')
+
+activateCalendar = (element) ->
+  return unless element && element.selector
+  return if activatedElements[element.selector]
 
   initFullCalendar element
   loadEvents element
 
-  isActivated = true
+  activatedElements[element.selector] = true
 
 initFullCalendar = (element) ->
   config =
@@ -77,6 +96,20 @@ initFullCalendar = (element) ->
 
     config.eventResize = (event) ->
       updateEvent event.start, event.end
+
+  if element.hasClass 'calendar-month'
+    config.defaultView = 'month'
+
+    config.selectable = true
+    config.select = (start, end) ->
+      addEvent element, start
+      deadline = start
+
+    config.eventDrop = (event) ->
+      deadline = event.start
+
+    config.eventResize = (event) ->
+      deadline = event.start
 
   element.fullCalendar config
 
