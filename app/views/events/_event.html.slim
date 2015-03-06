@@ -1,10 +1,10 @@
 = link_to event, class: "list-group-item list-item"
   .row
-    .col-lg-1.no-padding-right
+    .col-lg-1.col-md-1.hidden-sm.hidden-xs.no-padding-right
       - if event.image_file.present? || event.image_url.present?
         = image_tag(event.image_file_url || event.image_url, class: "img-responsive center-block")
 
-    .col-lg-10
+    .col-lg-10.col-md-10.col-sm-11.col-xs-12
       h4.list-group-item-heading
         = event.title
 
@@ -29,7 +29,7 @@
           .pull-right
             = event.owner_name
 
-    .col-lg-1
+    .col-lg-1.col-md-1.col-sm-1.hidden-xs
       #eventAttendees
         span.number
           span class=(event.include?(current_user) ? 'event-attend' : '')

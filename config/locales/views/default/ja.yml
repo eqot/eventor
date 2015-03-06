@@ -15,6 +15,9 @@ ja:
     ok: '決定'
     cancel: 'キャンセル'
 
+  date:
+    formats:
+      default: ! '%Y/%m/%d (%a)'
   time:
     formats:
       default: ! '%Y/%m/%d (%a) %H:%M'

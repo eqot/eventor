@@ -15,6 +15,10 @@ $(document).on "ready page:load", ->
   $('#event_invitation_attributes_start_time').on 'update', ->
     updateDateTime()
 
+  updateDeadline()
+  $('#event_invitation_attributes_deadline').on 'update', ->
+    updateDeadline()
+
 enableMarkdownPreview = ->
   $('a[href=#preview]').on 'shown.bs.tab', ->
     data = {
@@ -44,6 +48,9 @@ update = (inElement, outElement) ->
   if not $(outElement).hasClass('time-only')
     value = "#{m.format('L')} (#{m.format('ddd')}) " + value
 
+  if $(outElement).hasClass('date-only')
+    value = "#{m.format('L')} (#{m.format('ddd')})"
+
   $(outElement).text(value)
 
   $('#eventFormDateTime').removeClass('hidden')
@@ -58,3 +65,6 @@ showDateTime = ->
 updateDateTime = ->
   update('#event_invitation_attributes_start_time', '#start_time')
   update('#event_invitation_attributes_end_time', '#end_time')
+
+updateDeadline = ->
+  update('#event_invitation_attributes_deadline', '#deadline')

@@ -1,3 +1,35 @@
+1.7.0 (Mar 7 2015)
+===================
+
+* Support maximum number of attendees and deadline
+* Support responsive UI
+
+1.6.0 (Mar 6 2015)
+===================
+
+* Add new feature that invitees can see "invitees only" events
+* Fix issue that there is no events at calendar view
+
+1.5.0 (Mar 2 2015)
+===================
+* UI polish
+  * List view
+    * Show thumbnail
+    * Remove unnecessary "@"
+  * Detail view
+    * Show image at center
+    * Show "TBD" if there is no date or location
+  * Event creation
+    * Allow to create event without date
+* Bugfix
+  * List view
+    * Fix layout issue to show event without description
+  * Detail view
+    * Fix issue that image URL does not work
+  * Event creation / edit
+    * Fix issue that date is not changed
+    * Fix issue causing duplicated events in calendar
+
 1.4.0 (Feb 22 2015)
 ===================
 

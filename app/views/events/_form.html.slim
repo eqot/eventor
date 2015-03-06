@@ -9,7 +9,7 @@
     = f.text_field :title, class: 'form-control input-lg event-title', placeholder: t('view.event.title')
 
   .row
-    .col-lg-8
+    .col-lg-8.col-md-8.col-sm-12.col-xs-12
       .panel.panel-default
         .panel-heading
           = t('view.event.image')
@@ -33,18 +33,18 @@
           = t('view.event.detail')
         .panel-body.panel-event
           .row
-            .col-lg-2
+            .col-lg-2.col-md-2.col-sm-2.col-xs-3
               .pull-right
                 = t('view.event.organizer')
-            .col-lg-10
+            .col-lg-10.col-md-10.col-sm-10.col-xs-9
               = current_user.name
 
           = f.fields_for :invitation do |f_invitation|
             .row
-              .col-lg-2
+              .col-lg-2.col-md-2.col-sm-2.col-xs-3
                 .pull-right
                   = t('view.event.date_time')
-              .col-lg-10
+              .col-lg-10.col-md-10.col-sm-10.col-xs-9
                 span#eventFormDateTime.hidden
                   span#start_time.datetime>
                   | -
@@ -54,34 +54,68 @@
                   = f_invitation.text_field :start_time
                   = f_invitation.text_field :end_time
 
-                button#editDateButton.btn.btn-default.btn-sm type="button" data-toggle="modal"
+                button.btn-modal-open.btn.btn-default.btn-sm type="button" data-modal="#editDateTimeModal"
                   .glyphicon.glyphicon-calendar aria-hidden="true"
                     = t('view.event.edit')
 
-                #editDateModal.modal.fade tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+                #editDateTimeModal.modal.fade tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
                   .modal-dialog.modal-lg
                     .modal-content
                       .modal-body
-                        #calendarModal.calendar-edit
+                        .calendar.calendar-edit.calendar-week
 
                       .modal-footer
                         button.btn.btn-default type="button" data-dismiss="modal"
                           = t('view.cancel')
-                        button#setDateButton.btn.btn-primary type="button"
+                        button#setDateTimeButton.btn.btn-primary type="button"
                           = t('view.ok')
 
             .row
-              .col-lg-2
+              .col-lg-2.col-md-2.col-sm-2.col-xs-3
                 .pull-right
                   = t('view.event.location')
-              .col-lg-10
+              .col-lg-10.col-md-10.col-sm-10.col-xs-9
                 = f_invitation.text_field :location, class: 'form-control'
 
+            .row
+              .col-lg-2.col-md-2.col-sm-2.col-xs-3
+                .pull-right
+                  = t('view.event.max_attendees')
+              .col-lg-2.col-md-2.col-sm-2.col-xs-2
+                = f_invitation.number_field :max_attendees, class: 'form-control', min: 0
+
+            .row
+              .col-lg-2.col-md-2.col-sm-2.col-xs-3
+                .pull-right
+                  = t('view.event.deadline')
+              .col-lg-10.col-md-10.col-sm-10.col-xs-9
+                span#eventFormDeadline
+                  span#deadline.datetime.date-only
+
+                .hidden
+                  = f_invitation.text_field :deadline
+
+                button.btn-modal-open.btn.btn-default.btn-sm type="button" data-modal="#editDeadlineModal"
+                  .glyphicon.glyphicon-calendar aria-hidden="true"
+                    = t('view.event.edit')
+
+                #editDeadlineModal.modal.fade tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+                  .modal-dialog.modal-lg
+                    .modal-content
+                      .modal-body
+                        .calendar.calendar-edit.calendar-month
+
+                      .modal-footer
+                        button.btn.btn-default type="button" data-dismiss="modal"
+                          = t('view.cancel')
+                        button.btn-modal-close.btn.btn-primary type="button" data-modal="#editDeadlineModal" data-result="deadline" data-output="#event_invitation_attributes_deadline"
+                          = t('view.ok')
+
           .row
-            .col-lg-2
+            .col-lg-2.col-md-2.col-sm-2.col-xs-3
               .pull-right
                 = t('view.event.members_only')
-            .col-lg-10
+            .col-lg-10.col-md-10.col-sm-10.col-xs-9
               = f.check_box :visibility, {}, "members_only", "everyone"
               = f.text_field :members, class: 'form-control hidden'
 
@@ -90,10 +124,10 @@
                 #members
 
           .row
-            .col-lg-2
+            .col-lg-2.col-md-2.col-sm-2.col-xs-3
               .pull-right
                 = t('view.event.description')
-            .col-lg-10
+            .col-lg-10.col-md-10.col-sm-10.col-xs-9
               .form-group
                 ul.nav.nav-tabs role="tablist"
                   li.active
