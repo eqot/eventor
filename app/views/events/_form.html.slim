@@ -9,7 +9,7 @@
     = f.text_field :title, class: 'form-control input-lg event-title', placeholder: t('view.event.title')
 
   .row
-    .col-lg-8
+    .col-lg-8.col-md-8.col-sm-12.col-xs-12
       .panel.panel-default
         .panel-heading
           = t('view.event.image')
@@ -33,18 +33,18 @@
           = t('view.event.detail')
         .panel-body.panel-event
           .row
-            .col-lg-2
+            .col-lg-2.col-md-2.col-sm-2.col-xs-3
               .pull-right
                 = t('view.event.organizer')
-            .col-lg-10
+            .col-lg-10.col-md-10.col-sm-10.col-xs-9
               = current_user.name
 
           = f.fields_for :invitation do |f_invitation|
             .row
-              .col-lg-2
+              .col-lg-2.col-md-2.col-sm-2.col-xs-3
                 .pull-right
                   = t('view.event.date_time')
-              .col-lg-10
+              .col-lg-10.col-md-10.col-sm-10.col-xs-9
                 span#eventFormDateTime.hidden
                   span#start_time.datetime>
                   | -
@@ -71,17 +71,17 @@
                           = t('view.ok')
 
             .row
-              .col-lg-2
+              .col-lg-2.col-md-2.col-sm-2.col-xs-3
                 .pull-right
                   = t('view.event.location')
-              .col-lg-10
+              .col-lg-10.col-md-10.col-sm-10.col-xs-9
                 = f_invitation.text_field :location, class: 'form-control'
 
           .row
-            .col-lg-2
+            .col-lg-2.col-md-2.col-sm-2.col-xs-3
               .pull-right
                 = t('view.event.members_only')
-            .col-lg-10
+            .col-lg-10.col-md-10.col-sm-10.col-xs-9
               = f.check_box :visibility, {}, "members_only", "everyone"
               = f.text_field :members, class: 'form-control hidden'
 
@@ -90,10 +90,10 @@
                 #members
 
           .row
-            .col-lg-2
+            .col-lg-2.col-md-2.col-sm-2.col-xs-3
               .pull-right
                 = t('view.event.description')
-            .col-lg-10
+            .col-lg-10.col-md-10.col-sm-10.col-xs-9
               .form-group
                 ul.nav.nav-tabs role="tablist"
                   li.active
