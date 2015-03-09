@@ -1,7 +1,7 @@
 class EventInvitation < ActiveRecord::Base
   belongs_to :event
 
-  validates :max_attendees, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :max_attendees, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
   validate :start_time_should_be_before_end_time
 
   private
