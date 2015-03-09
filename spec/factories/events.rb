@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :event do
     title { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph }
+    visibility Event.visibilities[:everyone]
 
     association :invitation, factory: :event_invitation, strategy: :build
 
