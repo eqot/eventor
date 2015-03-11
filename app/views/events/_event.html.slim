@@ -1,7 +1,7 @@
 = link_to event, class: "list-group-item list-item"
   .row
     .col-lg-1.col-md-1.hidden-sm.hidden-xs.no-padding-right
-      - if event.image_file.present? || event.image_url.present?
+      - if event.image_file? || event.image_url?
         = image_tag(event.image_file_url || event.image_url, class: "img-responsive center-block")
 
     .col-lg-10.col-md-10.col-sm-11.col-xs-12

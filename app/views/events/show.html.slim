@@ -4,7 +4,7 @@
 
 .row
   .col-lg-8.col-md-8.col-sm-12.col-xs-12
-    - if @event.image_file.present? || @event.image_url.present?
+    - if @event.image_file? || @event.image_url?
       = image_tag(@event.image_file_url || @event.image_url, class: "img-responsive center-block")
       .image-spacer
 
