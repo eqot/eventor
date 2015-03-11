@@ -47,7 +47,7 @@ activateModalCloseButton = (element) ->
     output.trigger('update')
 
 activateCalendar = (element) ->
-  return unless element && element.selector
+  return unless element[0] && element.selector
   return if activatedElements[element.selector]
 
   initFullCalendar element
