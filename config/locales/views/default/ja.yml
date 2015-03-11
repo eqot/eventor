@@ -20,5 +20,5 @@ ja:
       default: ! '%Y/%m/%d (%a)'
   time:
     formats:
-      default: ! '%Y/%m/%d (%a) %H:%M'
-      short: ! '%H:%M'
+      default: ! '%Y/%m/%d (%a) %k:%M'
+      short: ! '%k:%M'
