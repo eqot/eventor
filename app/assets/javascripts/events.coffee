@@ -44,7 +44,7 @@ update = (inElement, outElement) ->
   return unless date?.length > 0
 
   m = moment(date)
-  value = "#{m.format('HH:mm')}"
+  value = "#{m.format('H:mm')}"
   if not $(outElement).hasClass('time-only')
     value = "#{m.format('L')} (#{m.format('ddd')}) " + value
 

@@ -11,22 +11,22 @@ describe Event do
 
   it { should respond_to(:invitees) }
 
-  it "is valid with a title" do
+  it 'is valid with a title' do
     event = build(:event)
     expect(event).to be_valid
   end
 
-  it "is invalid without a title" do
+  it 'is invalid without a title' do
     event = build(:event, title: nil)
     expect(event).to have(1).errors_on(:title)
   end
 
-  it "should have 4 attendees" do
+  it 'should have 4 attendees' do
     event = create(:event)
     expect(event.attendees).to have(4).items
   end
 
-  it "should have 4 invitees" do
+  it 'should have 4 invitees' do
     event = create(:event)
     expect(event.invitees).to have(4).items
   end
