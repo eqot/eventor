@@ -21,7 +21,7 @@ class Event < ActiveRecord::Base
   validates :title, presence: true
 
   default_scope -> {
-    includes(:owner, :targets, :invitees, :attendees, :invitation)
+    includes(:owner, :targets, :attendees, :invitation)
     .order('event_invitations.start_time')
   }
   scope :coming, -> {
