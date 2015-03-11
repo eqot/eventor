@@ -48,14 +48,14 @@ Rails.application.configure do
   # Bullet
   config.after_initialize do
     # Bullet.enable = true
-    # Bullet.alert = true
-    # Bullet.bullet_logger = true
-    # Bullet.console = true
-    # Bullet.growl = true
+    # Bullet.alert = false
+    # Bullet.bullet_logger = false
+    # Bullet.console = false
+    # Bullet.growl = false
     # Bullet.rails_logger = true
-    # Bullet.bugsnag = true
-    # Bullet.airbrake = true
-    # Bullet.add_footer = true
+    # Bullet.bugsnag = false
+    # Bullet.airbrake = false
+    # Bullet.add_footer = false
     # Bullet.stacktrace_includes = [ 'your_gem', 'your_middleware' ]
   end
 end
