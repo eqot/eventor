@@ -20,25 +20,25 @@ class Event < ActiveRecord::Base
 
   validates :title, presence: true
 
-  default_scope -> {
+  default_scope do
     includes(:owner, :targets, :attendees, :invitation)
-    .order('event_invitations.start_time')
-  }
-  scope :coming, -> {
+      .order('event_invitations.start_time')
+  end
+  scope :coming, lambda {
     where('event_invitations.start_time > ?', Time.now)
-    .order('event_invitations.start_time')
+      .order('event_invitations.start_time')
   }
-  scope :passed, -> {
+  scope :passed, lambda {
     where('event_invitations.start_time < ?', Time.now)
-    .reorder('event_invitations.start_time desc')
+      .reorder('event_invitations.start_time desc')
   }
-  scope :visible, ->(user) {
+  scope :visible, lambda { |user|
     if user.present?
       where('visibility is ? OR visibility = ? OR owner_id = ? OR targets.user_id = ?',
-        nil, Event.visibilities[:everyone], user.id, user.id)
+            nil, Event.visibilities[:everyone], user.id, user.id)
     else
       where('visibility is ? OR visibility = ?',
-        nil, Event.visibilities[:everyone])
+            nil, Event.visibilities[:everyone])
     end
   }
 
@@ -57,11 +57,11 @@ class Event < ActiveRecord::Base
   end
 
   def include?(user)
-    owner == user || self.attend?(user)
+    owner == user || attend?(user)
   end
 
   def convert_invitees_to_member_ids
-    self.members = self.invitees.map(&:id).join(',')
+    self.members = invitees.map(&:id).join(',')
   end
 
   def invite!(user)
@@ -69,16 +69,14 @@ class Event < ActiveRecord::Base
   end
 
   def convert_member_ids_to_invitees
-    return unless self.members.present?
+    return unless members.present?
 
-    old_ids = self.invitees.map(&:id)
-    new_ids = self.members.split(',').map {|item| item.to_i}
+    old_ids = invitees.map(&:id)
+    new_ids = members.split(',').map(&:to_i)
 
     added_ids = []
     new_ids.each do |id|
-      if old_ids.index(id).nil?
-        added_ids.push id
-      end
+      added_ids.push id if old_ids.index(id).nil?
     end
     added_ids.each do |id|
       targets.find_or_create_by!(user_id: id)
@@ -86,9 +84,7 @@ class Event < ActiveRecord::Base
 
     removed_ids = []
     old_ids.each do |id|
-      if new_ids.index(id).nil?
-        removed_ids.push id
-      end
+      removed_ids.push id if new_ids.index(id).nil?
     end
     removed_ids.each do |id|
       target = targets.find_by!(user_id: id)

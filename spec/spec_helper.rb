@@ -83,8 +83,6 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 
-  RSpec.configure do |config|
-    config.include FactoryGirl::Syntax::Methods
-    config.include Devise::TestHelpers, type: :controller
-  end
+  config.include FactoryGirl::Syntax::Methods
+  config.include Devise::TestHelpers, type: :controller
 end

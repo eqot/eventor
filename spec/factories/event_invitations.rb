@@ -1,4 +1,4 @@
-require "faker"
+require 'faker'
 
 FactoryGirl.define do
   factory :event_invitation do

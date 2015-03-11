@@ -9,7 +9,7 @@ RSpec.describe EventsController, type: :controller do
   end
 
   describe 'Get #index' do
-    it "populates an array of events ordering by date" do
+    it 'populates an array of events ordering by date' do
       next_event = create(:event)
 
       get :index
@@ -21,7 +21,7 @@ RSpec.describe EventsController, type: :controller do
         sign_out @user
       end
 
-      it "populates an array of events which can be seen by invitee" do
+      it 'populates an array of events which can be seen by invitee' do
         invitee = @event.invitees[0]
         sign_in invitee
 
@@ -29,7 +29,7 @@ RSpec.describe EventsController, type: :controller do
         expect(assigns(:events)).to match([@event])
       end
 
-      it "populates an array of events which cannot be seen by non-invitee" do
+      it 'populates an array of events which cannot be seen by non-invitee' do
         non_invitee = create(:user)
         sign_in non_invitee
 
@@ -40,7 +40,7 @@ RSpec.describe EventsController, type: :controller do
   end
 
   describe 'Get #show' do
-    it "assigns the requested event to @event" do
+    it 'assigns the requested event to @event' do
       get :show, id: @event
       expect(assigns(:event)).to eq @event
     end

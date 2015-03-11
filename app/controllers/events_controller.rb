@@ -25,9 +25,9 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
 
-    if user_signed_in?
-      @ticket = current_user.tickets.find_by(event_id: params[:id])
-    end
+    return unless user_signed_in?
+
+    @ticket = current_user.tickets.find_by(event_id: params[:id])
   end
 
   def new
