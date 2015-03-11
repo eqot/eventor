@@ -80,8 +80,10 @@ group :development do
   gem 'hirb'
   gem 'hirb-unicode'
 
+  # Use static code analysis
   gem 'rails_best_practices'
   gem 'rubocop', require: false
+  gem "brakeman", require: false
 
   # Use Bullet for checking N+1 problem
   gem 'bullet'
