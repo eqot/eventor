@@ -35,7 +35,10 @@ header.navbar.navbar-default role="navigation"
             - if !user_signed_in?
               = link_to t('view.sign_in'), sign_in_path, class: "btn btn-success"
             - else
-              .dropdown
+              = link_to user_notifications_path(current_user), class: (current_user.notifications.count > 0 ? 'btn btn-danger' : 'btn btn-default')
+                i.glyphicon.glyphicon-envelope
+                =< current_user.notifications.count if current_user.notifications.count > 0
+              span.dropdown
                 button.btn.btn-default.dropdown-toggle#dropdownMenuUser type="button" data-toggle="dropdown"
                   = current_user.name
                   span.caret<

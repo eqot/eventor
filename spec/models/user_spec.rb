@@ -19,4 +19,17 @@ RSpec.describe User, type: :model do
     user = build(:user_without_name)
     expect(user).to have(1).errors_on(:name)
   end
+
+  describe 'notification' do
+    it 'should have right notifications' do
+      user = create(:user)
+
+      notification1 = create(:notification)
+      notification1.notify!(user)
+      notification2 = create(:notification)
+      notification2.notify!(user)
+
+      expect(user.notifications).to match_array([notification1, notification2])
+    end
+  end
 end

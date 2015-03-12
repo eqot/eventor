@@ -298,6 +298,9 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
+    rails-timeago (2.11.1)
+      actionpack (>= 3.1)
+      activesupport (>= 3.1)
     rails_best_practices (1.15.7)
       activesupport
       code_analyzer (>= 0.4.3)
@@ -485,6 +488,7 @@ DEPENDENCIES
   rack-livereload
   rack-mini-profiler
   rails (= 4.2.0)
+  rails-timeago
   rails_best_practices
   rb-fsevent
   ri_cal

@@ -42,6 +42,10 @@ class Event < ActiveRecord::Base
     end
   }
 
+  def base_url
+    Rails.application.routes.url_helpers.event_path(self)
+  end
+
   def owner?(user)
     return false unless user
     owner_id == user.id
@@ -66,6 +70,20 @@ class Event < ActiveRecord::Base
 
   def invite!(user)
     targets.find_or_create_by!(user_id: user.id)
+
+    user.notifications.create(
+      description: 'You are invited to ' + title,
+      image: image_url,
+      url: base_url
+    )
+  end
+
+  def uninvite!(user)
+    target = targets.find_by!(user_id: user.id)
+    target.destroy!
+
+    notification = user.notifications.find_by(url: base_url)
+    notification.checked!(user)
   end
 
   def convert_member_ids_to_invitees
@@ -79,7 +97,8 @@ class Event < ActiveRecord::Base
       added_ids.push id if old_ids.index(id).nil?
     end
     added_ids.each do |id|
-      targets.find_or_create_by!(user_id: id)
+      user = User.find(id)
+      invite!(user) if user.present?
     end
 
     removed_ids = []
@@ -87,8 +106,8 @@ class Event < ActiveRecord::Base
       removed_ids.push id if new_ids.index(id).nil?
     end
     removed_ids.each do |id|
-      target = targets.find_by!(user_id: id)
-      target.destroy!
+      user = User.find(id)
+      uninvite!(user) if user.present?
     end
   end
 end

@@ -138,3 +138,6 @@ gem 'ridgepole'
 
 # Use jQuery UI
 gem 'jquery-ui-rails'
+
+# Use rails-timeago
+gem 'rails-timeago'

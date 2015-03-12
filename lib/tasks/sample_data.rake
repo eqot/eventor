@@ -3,15 +3,17 @@ namespace :db do
   task populate: :environment do
     clean
     # make_users
-    make_events
-    register_events
+    # make_events
+    # register_events
+    make_notifications
   end
 end
 
 def clean
   # User.all.delete_all
-  Event.all.delete_all
-  EventInvitation.all.delete_all
+  # Event.all.delete_all
+  # EventInvitation.all.delete_all
+  Notification.all.delete_all
 end
 
 def make_users
@@ -60,6 +62,20 @@ def register_events
   User.all[0..3].each do |user|
     Event.all[6..29].each do |event|
       event.attend!(user)
+    end
+  end
+end
+
+def make_notifications
+  10.times do |index|
+    notification = Notification.create!(
+      description: Faker::Lorem.sentence,
+      image: Faker::Lorem.sentence,
+      url:  Faker::Internet.url
+    )
+
+    User.all[0..3].each do |user|
+      notification.notify!(user)
     end
   end
 end

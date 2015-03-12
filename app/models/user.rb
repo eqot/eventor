@@ -13,4 +13,7 @@ class User < ActiveRecord::Base
 
   has_many :targets
   has_many :invited_events, through: :targets, source: :event
+
+  has_many :user_notifications
+  has_many :notifications, through: :user_notifications, source: :notification
 end

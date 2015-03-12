@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     get 'sign_out', to: 'devise/sessions#destroy'
   end
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    resources :notifications
+  end
 
   root 'events#index'
 
