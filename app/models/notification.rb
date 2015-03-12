@@ -2,6 +2,10 @@ class Notification < ActiveRecord::Base
   has_many :user_notifications
   has_many :users, through: :user_notifications, source: :user
 
+  default_scope do
+    order('created_at desc')
+  end
+
   def notify!(user)
     return false unless user
 
@@ -10,7 +14,7 @@ class Notification < ActiveRecord::Base
 
   def checked!(user)
     return false unless user
-    
+
     user_notifications.find_by(user_id: user.id).destroy
   end
 end

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
+//= require rails-timeago-all
 //= require twitter/bootstrap
 //= require moment
 //= require fullcalendar
