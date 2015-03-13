@@ -73,7 +73,7 @@ class Event < ActiveRecord::Base
 
     user.notifications.create(
       description: 'You are invited to ' + title,
-      image: image_url,
+      image: image_file_url || image_url,
       url: base_url
     )
   end
@@ -83,7 +83,7 @@ class Event < ActiveRecord::Base
     target.destroy!
 
     notification = user.notifications.find_by(url: base_url)
-    notification.checked!(user)
+    notification.checked!(user) if notification.present?
   end
 
   def convert_member_ids_to_invitees

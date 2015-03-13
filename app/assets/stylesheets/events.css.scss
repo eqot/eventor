@@ -153,3 +153,15 @@ a.event-edit {
 
   font-size: 14px;
 }
+
+.btn-no-border {
+  border: 0;
+  background-color: transparent;
+  visibility: hidden;
+}
+
+.list-item:hover {
+  .btn-no-border {
+    visibility: visible;
+  }
+}

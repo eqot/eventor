@@ -1,6 +1,17 @@
 = link_to notification.url, class: 'list-group-item list-item'
-  = notification.description
-  = notification.image
+  .row
+    .col-lg-1.col-md-1.hidden-sm.hidden-xs.no-padding-right
+      - if notification.image.present?
+        = image_tag(notification.image, class: "img-responsive center-block")
 
-  span.pull-right
-    = timeago_tag notification.created_at, lang: :ja
+    .col-lg-11.col-md-11.col-sm-12.col-xs-12
+      = notification.description
+
+      span.pull-right
+        = form_for([current_user, notification],
+                  html: { method: :delete, remote: true }) do |f|
+          button.btn-no-border
+            i.glyphicon.glyphicon-trash
+
+      span.pull-right
+        = timeago_tag notification.created_at, lang: :ja
