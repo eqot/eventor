@@ -8,4 +8,10 @@
       = notification.description
 
       span.pull-right
+        = form_for([current_user, notification],
+                  html: { method: :delete, remote: true }) do |f|
+          button.btn-no-border
+            i.glyphicon.glyphicon-trash
+
+      span.pull-right
         = timeago_tag notification.created_at, lang: :ja
