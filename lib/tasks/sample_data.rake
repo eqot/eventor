@@ -70,7 +70,7 @@ def make_notifications
   10.times do |index|
     notification = Notification.create!(
       description: Faker::Lorem.sentence,
-      image: Faker::Lorem.sentence,
+      image: nil,
       url:  Faker::Internet.url
     )
 
