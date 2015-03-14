@@ -72,7 +72,7 @@ class Event < ActiveRecord::Base
     targets.find_or_create_by!(user_id: user.id)
 
     user.notifications.create(
-      description: 'You are invited to ' + title,
+      description: I18n.t('view.notification.invited', event: title),
       image: image_file_url || image_url,
       url: base_url
     )

@@ -1,0 +1,4 @@
+ja:
+  view:
+    notification:
+      invited: '「%{event}」に招待されました'
