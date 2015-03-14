@@ -60,4 +60,14 @@ describe Notification do
 
     expect(user.notifications).to have(1).items
   end
+
+  it 'should be removed if there are no users' do
+    user = create(:user)
+
+    event1 = create(:event)
+    event1.invite!(user)
+    event1.uninvite!(user)
+
+    expect(Notification.all).to have(0).items
+  end
 end
