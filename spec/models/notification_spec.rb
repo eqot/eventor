@@ -28,4 +28,36 @@ describe Notification do
 
     expect(notification.users).to match_array([user2])
   end
+
+  it 'should have right link to invited event' do
+    user = create(:user)
+
+    event = create(:event)
+    event.invite!(user)
+
+    expect(user.notifications[0].url).to eq(event.base_url)
+  end
+
+  it 'should have right notificated user when user is invited to event' do
+    user = create(:user)
+
+    event1 = create(:event)
+    event1.invite!(user)
+    event2 = create(:event)
+    event2.invite!(user)
+
+    expect(user.notifications).to have(2).items
+  end
+
+  it 'should have right notificated user when user is invited to event after uninvited' do
+    user = create(:user)
+
+    event1 = create(:event)
+    event1.invite!(user)
+    event2 = create(:event)
+    event2.invite!(user)
+    event2.uninvite!(user)
+
+    expect(user.notifications).to have(1).items
+  end
 end
