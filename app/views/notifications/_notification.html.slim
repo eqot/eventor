@@ -9,7 +9,7 @@
 
       span.pull-right
         = form_for([current_user, notification], html: { method: :delete }, remote: true ) do |f|
-          button.btn-no-border
+          button.btn-no-border.btn-no-propagation
             i.glyphicon.glyphicon-trash
 
       span.pull-right
