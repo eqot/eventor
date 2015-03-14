@@ -28,6 +28,9 @@ class EventsController < ApplicationController
     return unless user_signed_in?
 
     @ticket = current_user.tickets.find_by(event_id: params[:id])
+
+    @notification = current_user.notifications.find_by(url: @event.base_url)
+    @notification.checked!(current_user) if @notification.present?
   end
 
   def new
