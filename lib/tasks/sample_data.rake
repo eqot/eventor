@@ -5,7 +5,8 @@ namespace :db do
     # make_users
     # make_events
     # register_events
-    make_notifications
+    # make_notifications
+    invite_users
   end
 end
 
@@ -76,6 +77,14 @@ def make_notifications
 
     User.all[0..3].each do |user|
       notification.notify!(user)
+    end
+  end
+end
+
+def invite_users
+  User.all[0..3].each do |user|
+    Event.all[7..16].each do |event|
+      event.invite!(user)
     end
   end
 end
