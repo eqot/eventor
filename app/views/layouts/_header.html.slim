@@ -37,7 +37,9 @@ header.navbar.navbar-default role="navigation"
             - else
               = link_to user_notifications_path(current_user), class: (current_user.notifications.count > 0 ? 'btn btn-danger' : 'btn btn-default')
                 i.glyphicon.glyphicon-envelope
-                =< current_user.notifications.count if current_user.notifications.count > 0
+                span#notifications_count<
+                  = current_user.notifications.count if current_user.notifications.count > 0
+
               span.dropdown
                 button.btn.btn-default.dropdown-toggle#dropdownMenuUser type="button" data-toggle="dropdown"
                   = current_user.name

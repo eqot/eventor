@@ -17,4 +17,11 @@ class Notification < ActiveRecord::Base
 
     user_notifications.find_by(user_id: user.id).destroy
   end
+
+  def self.find_and_checked!(user, event)
+    return false unless user
+
+    notification = user.notifications.find_by(url: event.base_url)
+    notification.checked!(user) if notification.present?
+  end
 end

@@ -72,7 +72,7 @@ class Event < ActiveRecord::Base
     targets.find_or_create_by!(user_id: user.id)
 
     user.notifications.create(
-      description: 'You are invited to ' + title,
+      description: I18n.t('view.notification.invited', event: title),
       image: image_file_url || image_url,
       url: base_url
     )
@@ -82,8 +82,7 @@ class Event < ActiveRecord::Base
     target = targets.find_by!(user_id: user.id)
     target.destroy!
 
-    notification = user.notifications.find_by(url: base_url)
-    notification.checked!(user) if notification.present?
+    Notification.find_and_checked!(user, self)
   end
 
   def convert_member_ids_to_invitees

@@ -6,7 +6,11 @@ class NotificationsController < ApplicationController
   end
 
   def destroy
-    notification = current_user.notifications.find(params[:id])
-    notification.checked!(current_user) if notification.present?
+    @notification = current_user.notifications.find(params[:id])
+    @notification.checked!(current_user) if @notification.present?
+
+    respond_to do |format|
+      format.js
+    end
   end
 end

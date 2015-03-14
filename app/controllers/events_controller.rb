@@ -28,6 +28,8 @@ class EventsController < ApplicationController
     return unless user_signed_in?
 
     @ticket = current_user.tickets.find_by(event_id: params[:id])
+
+    Notification.find_and_checked!(current_user, @event)
   end
 
   def new

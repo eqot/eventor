@@ -1,4 +1,4 @@
-= link_to notification.url, class: 'list-group-item list-item'
+= link_to notification.url, class: 'list-group-item list-item', id: notification.id
   .row
     .col-lg-1.col-md-1.hidden-sm.hidden-xs.no-padding-right
       - if notification.image.present?
@@ -8,9 +8,8 @@
       = notification.description
 
       span.pull-right
-        = form_for([current_user, notification],
-                  html: { method: :delete, remote: true }) do |f|
-          button.btn-no-border
+        = form_for([current_user, notification], html: { method: :delete }, remote: true ) do |f|
+          button.btn-no-border.btn-no-propagation
             i.glyphicon.glyphicon-trash
 
       span.pull-right
