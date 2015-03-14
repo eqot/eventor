@@ -82,8 +82,7 @@ class Event < ActiveRecord::Base
     target = targets.find_by!(user_id: user.id)
     target.destroy!
 
-    notification = user.notifications.find_by(url: base_url)
-    notification.checked!(user) if notification.present?
+    Notification.find_and_checked!(user, self)
   end
 
   def convert_member_ids_to_invitees

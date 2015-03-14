@@ -29,8 +29,7 @@ class EventsController < ApplicationController
 
     @ticket = current_user.tickets.find_by(event_id: params[:id])
 
-    @notification = current_user.notifications.find_by(url: @event.base_url)
-    @notification.checked!(current_user) if @notification.present?
+    Notification.find_and_checked!(current_user, @event)
   end
 
   def new
