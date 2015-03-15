@@ -16,6 +16,8 @@ class Notification < ActiveRecord::Base
     return false unless user
 
     user_notifications.find_by(user_id: user.id).destroy
+
+    destroy if users.count == 0
   end
 
   def self.find_and_checked!(user, event)

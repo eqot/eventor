@@ -133,7 +133,7 @@ GEM
     faker (1.4.3)
       i18n (~> 0.5)
     fastercsv (1.5.5)
-    ffi (1.9.7)
+    ffi (1.9.8)
     fluent-logger (0.5.0)
       msgpack (>= 0.4.4, < 0.6.0, != 0.5.3, != 0.5.2, != 0.5.1, != 0.5.0)
     formatador (0.2.5)
@@ -152,7 +152,7 @@ GEM
       rack-accept
       rack-mount
       virtus (>= 1.0.0)
-    guard (2.12.4)
+    guard (2.12.5)
       formatador (>= 0.2.4)
       listen (~> 2.7)
       lumberjack (~> 1.0)
