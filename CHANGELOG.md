@@ -1,3 +1,10 @@
+1.8.0 (Mar 17 2015)
+===================
+
+* Support notification when user is invited
+* Fix issue that last invitee cannot be removed
+* Remove unnecessary 0 in time
+
 1.7.0 (Mar 7 2015)
 ===================
 
