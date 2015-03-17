@@ -50,3 +50,6 @@ header.navbar.navbar-default role="navigation"
                   li.divider role="presentation"
                   li role="presentation"
                     = link_to t('view.sign_out'), sign_out_path
+
+  - if user_signed_in?
+    = auto_discovery_link_tag(:rss, { controller: :users, action: :show, id: current_user, format: :rss }, title: 'Eventor RSS')

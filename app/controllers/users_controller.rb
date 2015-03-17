@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @events = @user.registered_events + @user.created_events
+    @notifications = @user.notifications
 
     respond_to do |format|
       format.html
@@ -18,6 +19,8 @@ class UsersController < ApplicationController
         @calendar = view_context.make_calendar(@events, request.host_with_port)
         render text: @calendar.export
       end
+
+      format.rss
     end
   end
 end
