@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:index, :show] do
-    resources :notifications
+    resources :notifications, only: [:index, :destroy]
   end
 
   root 'events#index'
