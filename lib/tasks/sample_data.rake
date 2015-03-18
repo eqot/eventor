@@ -68,7 +68,7 @@ def register_events
 end
 
 def make_notifications
-  10.times do |index|
+  10.times do
     notification = Notification.create!(
       description: Faker::Lorem.sentence,
       image: nil,
