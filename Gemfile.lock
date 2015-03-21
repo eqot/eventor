@@ -120,7 +120,7 @@ GEM
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
-    equalizer (0.0.9)
+    equalizer (0.0.10)
     erubis (2.7.0)
     eventmachine (1.0.7)
     execjs (2.4.0)
