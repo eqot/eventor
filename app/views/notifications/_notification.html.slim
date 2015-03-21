@@ -1,8 +1,8 @@
-= link_to notification.url, class: 'list-group-item list-item', id: notification.id
+= link_to notification.content, class: 'list-group-item list-item', id: notification.id
   .row
     .col-lg-1.col-md-1.hidden-sm.hidden-xs.no-padding-right
-      - if notification.image.present?
-        = image_tag(notification.image, class: "img-responsive center-block")
+      - if notification.content.image_file.present?
+        = image_tag(notification.content.image_file, class: "img-responsive center-block")
 
     .col-lg-11.col-md-11.col-sm-12.col-xs-12
       = notification.description

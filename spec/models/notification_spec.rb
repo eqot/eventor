@@ -2,8 +2,7 @@ require 'rails_helper'
 
 describe Notification do
   it { should respond_to(:description) }
-  it { should respond_to(:image) }
-  it { should respond_to(:url) }
+  it { should respond_to(:content) }
 
   it 'should have right notificated users' do
     user1 = create(:user)
@@ -29,13 +28,13 @@ describe Notification do
     expect(notification.users).to match_array([user2])
   end
 
-  it 'should have right link to invited event' do
+  it 'should have right content to invited event' do
     user = create(:user)
 
     event = create(:event)
     event.invite!(user)
 
-    expect(user.notifications[0].url).to eq(event.base_url)
+    expect(user.notifications[0].content).to eq(event)
   end
 
   it 'should have right notificated user when user is invited to event' do

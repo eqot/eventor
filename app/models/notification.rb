@@ -2,6 +2,8 @@ class Notification < ActiveRecord::Base
   has_many :user_notifications
   has_many :users, through: :user_notifications, source: :user
 
+  belongs_to :content, polymorphic: true
+
   default_scope do
     order('created_at desc')
   end
@@ -20,10 +22,10 @@ class Notification < ActiveRecord::Base
     destroy if users.count == 0
   end
 
-  def self.find_and_checked!(user, event)
+  def self.find_and_checked!(user, content)
     return false unless user
 
-    notification = user.notifications.find_by(url: event.base_url)
+    notification = user.notifications.find_by(content: content)
     notification.checked!(user) if notification.present?
   end
 end
