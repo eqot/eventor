@@ -22,8 +22,10 @@ RSpec.describe EventsController, type: :controller do
       end
 
       it 'populates an array of events which can be seen by invitee' do
-        invitee = @event.invitees[0]
+        invitee = create(:user)
         sign_in invitee
+
+        @event.invite!(invitee)
 
         get :index
         expect(assigns(:events)).to match([@event])

@@ -16,6 +16,8 @@ class Event < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
   delegate :name, to: :owner, prefix: true
 
+  has_many :notifications, as: :content
+
   mount_uploader :image_file, FileUploader
 
   validates :title, presence: true
@@ -73,8 +75,7 @@ class Event < ActiveRecord::Base
 
     user.notifications.create(
       description: I18n.t('view.notification.invited', event: title),
-      image: image_file_url || image_url,
-      url: base_url
+      content: self
     )
   end
 
@@ -86,6 +87,8 @@ class Event < ActiveRecord::Base
   end
 
   def convert_member_ids_to_invitees
+    return unless members.present?
+
     old_ids = invitees.map(&:id)
     new_ids = members.split(',').map(&:to_i)
 

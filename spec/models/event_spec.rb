@@ -21,13 +21,19 @@ describe Event do
     expect(event).to have(1).errors_on(:title)
   end
 
-  it 'should have 4 attendees' do
+  it 'should have right attendees' do
     event = create(:event)
     expect(event.attendees).to have(4).items
   end
 
-  it 'should have 4 invitees' do
+  it 'should have right invitees' do
     event = create(:event)
+
+    4.times do
+      invitee = create(:user)
+      event.invite!(invitee)
+    end
+
     expect(event.invitees).to have(4).items
   end
 end

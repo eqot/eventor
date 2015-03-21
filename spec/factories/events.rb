@@ -15,11 +15,6 @@ FactoryGirl.define do
       attendees.each do |attendee|
         create(:ticket, user_id: attendee.id, event_id: event.id)
       end
-
-      invitees = create_list(:user, 4)
-      invitees.each do |invitee|
-        create(:target, user_id: invitee.id, event_id: event.id)
-      end
     end
 
     factory :invalid_event do
