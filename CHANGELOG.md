@@ -1,3 +1,10 @@
+1.9.0 (Mar 23 2015)
+===================
+
+* Support RSS for user's notifications when user was invited to event
+* Show event image on notification
+* Fix issue on event invitee to be edited or updated
+
 1.8.0 (Mar 17 2015)
 ===================
 
