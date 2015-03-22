@@ -46,6 +46,14 @@ class Event < ActiveRecord::Base
     Rails.application.routes.url_helpers.event_path(self)
   end
 
+  def image?
+    image_file? || image_url?
+  end
+
+  def image
+    image_file_url || image_url
+  end
+
   def owner?(user)
     return false unless user
     owner_id == user.id
