@@ -71,7 +71,7 @@ def make_notifications
   10.times do
     notification = Notification.create!(
       description: Faker::Lorem.sentence,
-      content: nil,
+      content: nil
     )
 
     User.all[0..3].each do |user|

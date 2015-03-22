@@ -4,8 +4,8 @@
 
 .row
   .col-lg-8.col-md-8.col-sm-12.col-xs-12
-    - if @event.image_file? || @event.image_url?
-      = image_tag(@event.image_file_url || @event.image_url, class: "img-responsive center-block")
+    - if @event.image?
+      = image_tag(@event.image, class: "img-responsive center-block")
       .image-spacer
 
     .panel.panel-default

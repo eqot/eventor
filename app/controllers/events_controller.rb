@@ -39,6 +39,8 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.created_events.build(event_params)
+    @event.convert_member_ids_to_invitees(params[:event][:members])
+
     if @event.save
       redirect_to @event, notice: 'Created'
     else
@@ -53,6 +55,8 @@ class EventsController < ApplicationController
 
   def update
     @event = current_user.created_events.find(params[:id])
+    @event.convert_member_ids_to_invitees(params[:event][:members])
+
     if @event.update(event_params)
       redirect_to @event, notice: 'Updated'
     else

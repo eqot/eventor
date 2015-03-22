@@ -1,6 +1,4 @@
 class Event < ActiveRecord::Base
-  before_save :convert_member_ids_to_invitees
-
   enum visibility: { everyone: 10, members_only: 20 }
 
   has_many :tickets
@@ -44,8 +42,12 @@ class Event < ActiveRecord::Base
     end
   }
 
-  def base_url
-    Rails.application.routes.url_helpers.event_path(self)
+  def image?
+    image_file? || image_url?
+  end
+
+  def image
+    image_file_url || image_url
   end
 
   def owner?(user)
@@ -86,11 +88,9 @@ class Event < ActiveRecord::Base
     Notification.find_and_checked!(user, self)
   end
 
-  def convert_member_ids_to_invitees
-    return unless members.present?
-
+  def convert_member_ids_to_invitees(members)
     old_ids = invitees.map(&:id)
-    new_ids = members.split(',').map(&:to_i)
+    new_ids = members.present? ? members.split(',').map(&:to_i) : []
 
     added_ids = []
     new_ids.each do |id|
