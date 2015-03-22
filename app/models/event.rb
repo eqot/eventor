@@ -42,10 +42,6 @@ class Event < ActiveRecord::Base
     end
   }
 
-  def base_url
-    Rails.application.routes.url_helpers.event_path(self)
-  end
-
   def image?
     image_file? || image_url?
   end
