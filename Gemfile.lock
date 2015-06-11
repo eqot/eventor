@@ -234,7 +234,7 @@ GEM
     momentjs-rails (2.10.3)
       railties (>= 3.1)
     msgpack (0.5.12)
-    multi_json (1.11.0)
+    multi_json (1.11.1)
     multi_xml (0.5.5)
     mysql2 (0.3.18)
     nenv (0.2.0)
