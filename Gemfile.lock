@@ -218,7 +218,7 @@ GEM
       celluloid (~> 0.16.0)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
-    lograge (0.3.2)
+    lograge (0.3.3)
       actionpack (>= 3)
       activesupport (>= 3)
       railties (>= 3)
