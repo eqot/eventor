@@ -230,7 +230,7 @@ GEM
     momentjs-rails (2.10.3)
       railties (>= 3.1)
     msgpack (0.5.12)
-    multi_json (1.11.1)
+    multi_json (1.11.2)
     multi_xml (0.5.5)
     mysql2 (0.3.18)
     nenv (0.2.0)
@@ -267,7 +267,7 @@ GEM
     rack (1.6.4)
     rack-accept (0.4.5)
       rack (>= 0.4)
-    rack-livereload (0.3.15)
+    rack-livereload (0.3.16)
       rack
     rack-mini-profiler (0.9.3)
       rack (>= 1.1.3)
